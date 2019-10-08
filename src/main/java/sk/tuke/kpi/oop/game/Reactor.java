@@ -135,6 +135,12 @@ public class Reactor extends AbstractActor {
         handleDamage();
     }
 
+    public void extinguishWith(FireExtinguisher fireExtinguisher){
+        this.temperature = 4000;
+        fireExtinguisher.use();
+        setAnimation(new Animation("sprites/reactor_extinguished.png"));
+    }
+
     public void turnOn(){
         this.isTurnedOn = true;
         this.setAnimation(this.normalAnimation);
