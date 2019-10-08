@@ -12,6 +12,7 @@ public class Reactor extends AbstractActor {
     private Animation hotAnimation;
     private Animation brokenAnimation;
     private Animation offAnimation;
+    private Light light;
 
     public Reactor(){
         turnOn();
@@ -69,7 +70,6 @@ public class Reactor extends AbstractActor {
             setAnimation(this.normalAnimation);
         }else if(this.temperature > 4000 && this.temperature <6000){
             setAnimation(this.hotAnimation);
-//            this.hotAnimation.setFrameDuration();
         }else{
             setAnimation(this.brokenAnimation);
         }
@@ -82,18 +82,7 @@ public class Reactor extends AbstractActor {
         this.temperature += Math.ceil(increment * this.increaseCoefficient);
 
         if(this.temperature > 2000){
-            int damage = (int) Math.round(((float)(this.temperature - 2000)/(float)4000) * (float) 100);
-            this.damage = Math.max(damage, this.damage);
-
-            if(this.damage <= 66 && this.damage >= 33){
-                this.increaseCoefficient = 1.5;
-            }else if(this.damage > 66){
-                this.increaseCoefficient = 2;
-                if(this.damage == 100){
-                    this.turnOff();
-                }
-            }
-            updateAnimation();
+            handleDamage();
         }
 
 
@@ -102,9 +91,28 @@ public class Reactor extends AbstractActor {
     public void decreaseTemperature(int decrement){
         if(damage < 100 && decrement > 0) {
             this.temperature -= (decrement * ((this.damage > 50) ? 0.5 : 1));
-            updateAnimation();
+            handleDamage();
         }
 
+    }
+
+    public void handleDamage(){
+        int damage = (int) Math.round(((float)(this.temperature - 2000)/(float)4000) * (float) 100);
+        this.damage = Math.max(damage, this.damage);
+
+        if(this.isRunning() && this.light != null){
+            this.light.setElectricityFlow(true);
+        }
+
+        if(this.damage <= 66 && this.damage >= 33){
+            this.increaseCoefficient = 1.5;
+        }else if(this.damage > 66){
+            this.increaseCoefficient = 2;
+            if(this.damage == 100){
+                this.turnOff();
+            }
+        }
+        updateAnimation();
     }
 
     public void repairWith(Hammer hammer){
@@ -112,10 +120,19 @@ public class Reactor extends AbstractActor {
             return;
 
         this.damage -= 50;
+        int helperDamage = this.damage;
         if(this.damage < 0){
             this.damage = 0;
         }
         hammer.use();
+        if(helperDamage > 0){
+            int helperTemperature = ((helperDamage * 4000) / 100) + 2000;
+            this.temperature = Math.min(helperTemperature, this.temperature);
+        } else {
+            this.temperature = 0;
+        }
+
+        handleDamage();
     }
 
     public void turnOn(){
@@ -125,6 +142,7 @@ public class Reactor extends AbstractActor {
 
     public void turnOff(){
         this.isTurnedOn = false;
+        this.light.setElectricityFlow(false);
         if(this.damage < 100)
             this.setAnimation(this.offAnimation);
     }
@@ -132,4 +150,13 @@ public class Reactor extends AbstractActor {
     public boolean isRunning(){
         return this.isTurnedOn;
     }
+
+    public void addLight(Light light){
+        this.light = light;
+    }
+
+    public void removeLight(){
+        this.light = null;
+    }
+
 }
