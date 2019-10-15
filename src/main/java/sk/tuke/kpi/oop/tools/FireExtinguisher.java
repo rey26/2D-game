@@ -1,14 +1,13 @@
-package sk.tuke.kpi.oop.game;
+package sk.tuke.kpi.oop.tools;
 
 import sk.tuke.kpi.gamelib.Scene;
-import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 
-public class FireExtinguisher extends AbstractActor {
+public class FireExtinguisher extends BreakableTool {
     private int availableUseTimes;
 
     public FireExtinguisher(){
-        this.availableUseTimes = 1;
+        super(1);
         setAnimation(new Animation("sprites/extinguisher.png"));
     }
 
