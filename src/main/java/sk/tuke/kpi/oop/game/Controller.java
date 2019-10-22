@@ -4,7 +4,6 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 
 public class Controller extends AbstractActor {
-    private Animation animation;
     public Reactor reactor;
     public Controller(Reactor reactor){
         this.reactor = reactor;

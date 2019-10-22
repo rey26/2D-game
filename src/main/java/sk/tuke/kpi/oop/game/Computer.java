@@ -4,10 +4,8 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 
 public class Computer extends AbstractActor {
-    private Animation animation;
-
     public Computer() {
-        this.animation = new Animation(
+        Animation animation = new Animation(
             "sprites/computer.png",
             80,
             48,
