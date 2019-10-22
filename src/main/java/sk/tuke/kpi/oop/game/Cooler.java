@@ -9,7 +9,7 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 
 public class Cooler extends AbstractActor {
     private boolean isOn;
-    private Reactor reactor;
+    protected Reactor reactor;
     private Animation animation;
     public Cooler(Reactor reactor){
         super();
@@ -39,7 +39,7 @@ public class Cooler extends AbstractActor {
         animation.stop();
     }
 
-    private void coolReactor(){
+    protected void coolReactor(){
         if(isOn){
             this.reactor.decreaseTemperature(1);
         }
