@@ -7,7 +7,7 @@ import sk.tuke.kpi.oop.game.actions.PerpetualReactorHeating;
 import sk.tuke.kpi.oop.tools.FireExtinguisher;
 import sk.tuke.kpi.oop.tools.Hammer;
 
-public class Reactor extends AbstractActor {
+public class Reactor extends AbstractActor implements Switchable {
 
     private boolean isTurnedOn;
     private int temperature;
@@ -105,7 +105,7 @@ public class Reactor extends AbstractActor {
         int damage = (int) Math.round(((float)(this.temperature - 2000)/(float)4000) * (float) 100);
         this.damage = Math.max(damage, this.damage);
 
-        if(this.isRunning() && this.light != null){
+        if(this.isOn() && this.light != null){
             this.light.setElectricityFlow(true);
         }
 
@@ -153,12 +153,13 @@ public class Reactor extends AbstractActor {
 
     public void turnOff(){
         this.isTurnedOn = false;
-        this.light.setElectricityFlow(false);
+        if(this.light != null)
+            this.light.setElectricityFlow(false);
         if(this.damage < 100)
             this.setAnimation(this.offAnimation);
     }
 
-    public boolean isRunning(){
+    public boolean isOn(){
         return this.isTurnedOn;
     }
 

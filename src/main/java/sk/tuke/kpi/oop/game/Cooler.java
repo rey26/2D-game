@@ -7,7 +7,7 @@ import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 
-public class Cooler extends AbstractActor {
+public class Cooler extends AbstractActor implements Switchable {
     private boolean isOn;
     protected Reactor reactor;
     private Animation animation;

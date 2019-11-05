@@ -19,7 +19,10 @@ public class DefectiveLight extends Light {
         int high = 20;
         int result = r.nextInt(high-low) + low;
         if(result == 1){
-            this.toggle();
+            if(this.isOn())
+                this.turnOn();
+            else
+                this.turnOff();;
         }
     }
 
