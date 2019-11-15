@@ -3,7 +3,7 @@ package sk.tuke.kpi.oop.game;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 
-public class Light extends AbstractActor implements Switchable{
+public class Light extends AbstractActor implements Switchable {
     private boolean isSupplied;
     private boolean isTurnedOn;
     private Animation offAnimation;
