@@ -1,8 +1,9 @@
-package sk.tuke.kpi.oop.tools;
+package sk.tuke.kpi.oop.items;
 
 import sk.tuke.kpi.gamelib.graphics.Animation;
+import sk.tuke.kpi.oop.game.Reactor;
 
-public class FireExtinguisher extends BreakableTool {
+public class FireExtinguisher extends BreakableTool<Reactor> {
     public FireExtinguisher(){
         super(1);
         setAnimation(new Animation("sprites/extinguisher.png"));

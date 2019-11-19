@@ -8,7 +8,7 @@ import sk.tuke.kpi.gamelib.actions.When;
 import sk.tuke.kpi.gamelib.framework.Scenario;
 import sk.tuke.kpi.oop.game.Cooler;
 import sk.tuke.kpi.oop.game.Reactor;
-import sk.tuke.kpi.oop.tools.Hammer;
+import sk.tuke.kpi.oop.items.Hammer;
 
 public class TrainingGameplay extends Scenario {
     public TrainingGameplay(){
@@ -34,5 +34,7 @@ public class TrainingGameplay extends Scenario {
             () -> reactor.getTemperature() >= 3000,
             new Invoke<>(() -> reactor.repairWith(hammer))
         ).scheduleFor(reactor);
+
+
     }
 }

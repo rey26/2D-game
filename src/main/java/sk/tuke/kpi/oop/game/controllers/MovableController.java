@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class MovableController implements KeyboardListener {
     private Movable movable;
-    private Move move;
+    private Move<Movable> move;
     private Map<Input.Key, Direction> keyDirectionMap = Map.ofEntries(
         Map.entry(Input.Key.UP, Direction.NORTH),
         Map.entry(Input.Key.RIGHT, Direction.EAST),
@@ -24,21 +24,15 @@ public class MovableController implements KeyboardListener {
 
     public void keyPressed(@NotNull Input.Key key) {
         this.move.stop();
-        switch (key) {
-            case UP:
-                this.move = new Move(Direction.NORTH, this.movable.getSpeed());
-                break;
-            case RIGHT:
-                this.move = new Move(Direction.EAST, this.movable.getSpeed());
-                break;
-            case DOWN:
-                this.move = new Move(Direction.SOUTH, this.movable.getSpeed());
-                break;
-            case LEFT:
-                this.move = new Move(Direction.WEST, this.movable.getSpeed());
-                break;
-            default:
-                break;
+        if (keyDirectionMap.containsKey(key)) {
+           this.move = new Move<>(keyDirectionMap.get(key), Float.MAX_VALUE);
+           move.scheduleFor(movable);
+        }
+    }
+
+    public void keyReleased(@NotNull Input.Key key) {
+        if (keyDirectionMap.containsKey(key)) {
+            this.move.stop();
         }
     }
 

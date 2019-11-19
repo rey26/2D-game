@@ -4,8 +4,8 @@ import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.actions.PerpetualReactorHeating;
-import sk.tuke.kpi.oop.tools.FireExtinguisher;
-import sk.tuke.kpi.oop.tools.Hammer;
+import sk.tuke.kpi.oop.items.FireExtinguisher;
+import sk.tuke.kpi.oop.items.Hammer;
 
 public class Reactor extends AbstractActor implements Switchable {
 
@@ -129,7 +129,7 @@ public class Reactor extends AbstractActor implements Switchable {
         if(this.damage < 0){
             this.damage = 0;
         }
-        hammer.use();
+//        hammer.useWith();
         if(helperDamage > 0){
             int helperTemperature = ((helperDamage * 4000) / 100) + 2000;
             this.temperature = Math.min(helperTemperature, this.temperature);
@@ -142,7 +142,7 @@ public class Reactor extends AbstractActor implements Switchable {
 
     public void extinguishWith(FireExtinguisher fireExtinguisher){
         this.temperature = 4000;
-        fireExtinguisher.use();
+//        fireExtinguisher.useWith();
         setAnimation(new Animation("sprites/reactor_extinguished.png"));
     }
 

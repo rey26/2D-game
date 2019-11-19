@@ -7,6 +7,8 @@ import sk.tuke.kpi.oop.game.Movable;
 
 public class Ripley extends AbstractActor implements Movable {
     private int speed;
+    private int energy;
+    private int ammo;
     private Animation animation;
     public Ripley(){
         super("Ellen");
@@ -24,6 +26,18 @@ public class Ripley extends AbstractActor implements Movable {
         return this.speed;
     }
 
+    public int getEnergy() {
+        return this.energy;
+    }
+
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
+
+    public int getAmmo() { return this.ammo;}
+    public void setAmmo(int ammo) {
+        this.ammo = ammo;
+    }
     @Override
     public void startedMoving(Direction direction) {
         this.animation.play();

@@ -56,17 +56,7 @@ public class Move <A extends Movable & Actor> implements Action<A> {
 
         this.isExecuted = true;
 
-        switch(this.direction){
-            case NORTH:
-                actor.setPosition(actor.getPosX(), actor.getPosY() + actor.getSpeed());
-            case EAST:
-                actor.setPosition(actor.getPosX() + actor.getSpeed(), actor.getPosY());
-            case SOUTH:
-                actor.setPosition(actor.getPosX(), actor.getPosY() - actor.getSpeed());
-            case WEST:
-                actor.setPosition(actor.getPosX() - actor.getSpeed(), actor.getPosY());
-        }
-
+        this.actor.setPosition(actor.getPosX() + (direction.getDx() * actor.getSpeed()), actor.getPosY() + (direction.getDy() * actor.getSpeed()));
     }
 
     public void stop() {
