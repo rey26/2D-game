@@ -23,8 +23,8 @@ public class Main {
         FirstSteps firstSteps = new FirstSteps();
         scene.addListener(firstSteps);
 
-        Player player = new Player();
-        scene.addActor(player, 0, 0);
+//        Player player = new Player();
+//        scene.addActor(player, 0, 0);
         // spustenie hry
         game.start();
 

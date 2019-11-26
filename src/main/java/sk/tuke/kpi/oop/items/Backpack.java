@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sk.tuke.kpi.gamelib.ActorContainer;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 public class Backpack implements ActorContainer<Collectible> {
     private String name;
     private int capacity;
-    private ArrayList<Collectible> content;
+    private List<Collectible> content;
 
     public Backpack(String name, int capacity) {
         this.name = name;
@@ -24,7 +23,6 @@ public class Backpack implements ActorContainer<Collectible> {
     }
 
     public List<Collectible> getContent() {
-        List<Collectible> content = new ArrayList<>(this.content);
         return content;
     }
 
@@ -50,9 +48,9 @@ public class Backpack implements ActorContainer<Collectible> {
     }
 
     public Iterator<Collectible> iterator(){
-        for(Collectible item : content){
-
-        }
+//        for(Collectible item : content){
+//
+//        }
         return null;
     }
 

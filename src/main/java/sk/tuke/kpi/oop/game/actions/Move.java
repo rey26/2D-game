@@ -57,6 +57,7 @@ public class Move <A extends Movable & Actor> implements Action<A> {
         this.isExecuted = true;
 
         this.actor.setPosition(actor.getPosX() + (direction.getDx() * actor.getSpeed()), actor.getPosY() + (direction.getDy() * actor.getSpeed()));
+        this.actor.getAnimation().setRotation(direction.getAngle());
     }
 
     public void stop() {

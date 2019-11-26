@@ -23,7 +23,9 @@ public class MovableController implements KeyboardListener {
     }
 
     public void keyPressed(@NotNull Input.Key key) {
-        this.move.stop();
+        if(this.move != null)
+            this.move.stop();
+
         if (keyDirectionMap.containsKey(key)) {
            this.move = new Move<>(keyDirectionMap.get(key), Float.MAX_VALUE);
            move.scheduleFor(movable);
@@ -32,7 +34,8 @@ public class MovableController implements KeyboardListener {
 
     public void keyReleased(@NotNull Input.Key key) {
         if (keyDirectionMap.containsKey(key)) {
-            this.move.stop();
+            if(this.move != null)
+                this.move.stop();
         }
     }
 
