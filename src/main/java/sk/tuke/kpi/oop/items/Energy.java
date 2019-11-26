@@ -9,9 +9,7 @@ import sk.tuke.kpi.oop.game.characters.Ripley;
 public class Energy extends AbstractActor implements Usable<Ripley> {
     public Energy(){
         Animation animation = new Animation(
-            "sprites/energy.png",
-            32,
-            32);
+            "sprites/energy.png");
 
         setAnimation(animation);
     }

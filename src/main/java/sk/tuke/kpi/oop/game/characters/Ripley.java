@@ -23,6 +23,7 @@ public class Ripley extends AbstractActor implements Movable, Keeper {
             0.1f,
             Animation.PlayMode.LOOP_PINGPONG);
         speed = 2;
+        energy = 50;
         setAnimation(this.animation);
         this.backpack = new Backpack("Ripley's backpack", 10);
     }

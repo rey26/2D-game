@@ -9,9 +9,7 @@ import sk.tuke.kpi.oop.game.characters.Ripley;
 public class Ammo extends AbstractActor implements Usable<Ripley> {
     public Ammo(){
         Animation animation = new Animation(
-            "sprites/ammo.png",
-            32,
-            32);
+            "sprites/ammo.png");
 
         setAnimation(animation);
     }
