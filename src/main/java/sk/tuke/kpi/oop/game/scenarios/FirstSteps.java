@@ -7,9 +7,12 @@ import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.SceneListener;
 import sk.tuke.kpi.oop.game.actions.Use;
 import sk.tuke.kpi.oop.game.characters.Ripley;
+import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
 import sk.tuke.kpi.oop.items.Ammo;
 import sk.tuke.kpi.oop.items.Energy;
+import sk.tuke.kpi.oop.items.FireExtinguisher;
+import sk.tuke.kpi.oop.items.Hammer;
 
 import java.util.List;
 
@@ -21,13 +24,22 @@ public class FirstSteps implements SceneListener {
         scene.addActor(ripley);
 
         MovableController movableController = new MovableController(ripley);
+        KeeperController keeperController = new KeeperController(ripley);
         scene.getInput().registerListener(movableController);
+        scene.getInput().registerListener(keeperController);
 
         Energy energy = new Energy();
         scene.addActor(energy, 100, 0);
 
         Ammo ammo = new Ammo();
         scene.addActor(ammo, -100, 0);
+
+        Hammer hammer = new Hammer();
+        ripley.getBackpack().add(hammer);
+        FireExtinguisher fireExtinguisher = new FireExtinguisher();
+        ripley.getBackpack().add(fireExtinguisher);
+        ripley.getBackpack().shift();
+        scene.getGame().pushActorContainer(ripley.getBackpack());
 
 
     }
