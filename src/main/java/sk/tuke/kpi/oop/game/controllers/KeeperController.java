@@ -25,7 +25,9 @@ public class KeeperController implements KeyboardListener {
                 break;
             case BACKSPACE:
                 new Drop<>().scheduleFor(this.keeper);
-
+                break;
+            default:
+                break;
 
         }
     }
