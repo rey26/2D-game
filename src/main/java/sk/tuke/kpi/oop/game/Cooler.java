@@ -9,7 +9,7 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 
 public class Cooler extends AbstractActor implements Switchable {
     private boolean isOn;
-    protected Reactor reactor;
+    private Reactor reactor;
     private Animation animation;
     public Cooler(Reactor reactor){
         super();
