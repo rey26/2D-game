@@ -5,7 +5,7 @@ import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Keeper;
 import sk.tuke.kpi.oop.game.Movable;
-import sk.tuke.kpi.oop.items.Backpack;
+import sk.tuke.kpi.oop.game.items.Backpack;
 
 public class Ripley extends AbstractActor implements Movable, Keeper {
     private int speed;

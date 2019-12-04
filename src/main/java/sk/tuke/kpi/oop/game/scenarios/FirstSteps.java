@@ -9,10 +9,10 @@ import sk.tuke.kpi.oop.game.actions.Use;
 import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
-import sk.tuke.kpi.oop.items.Ammo;
-import sk.tuke.kpi.oop.items.Energy;
-import sk.tuke.kpi.oop.items.FireExtinguisher;
-import sk.tuke.kpi.oop.items.Hammer;
+import sk.tuke.kpi.oop.game.items.Ammo;
+import sk.tuke.kpi.oop.game.items.Energy;
+import sk.tuke.kpi.oop.game.items.FireExtinguisher;
+import sk.tuke.kpi.oop.game.items.Hammer;
 
 import java.util.List;
 

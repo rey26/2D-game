@@ -1,4 +1,4 @@
-package sk.tuke.kpi.oop.items;
+package sk.tuke.kpi.oop.game.items;
 
 import org.jetbrains.annotations.NotNull;
 import sk.tuke.kpi.gamelib.Scene;

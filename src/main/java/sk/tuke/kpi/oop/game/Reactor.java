@@ -4,8 +4,8 @@ import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.actions.PerpetualReactorHeating;
-import sk.tuke.kpi.oop.items.FireExtinguisher;
-import sk.tuke.kpi.oop.items.Hammer;
+import sk.tuke.kpi.oop.game.items.FireExtinguisher;
+import sk.tuke.kpi.oop.game.items.Hammer;
 
 public class Reactor extends AbstractActor implements Switchable {
 
