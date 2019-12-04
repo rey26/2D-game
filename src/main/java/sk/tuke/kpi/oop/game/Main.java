@@ -14,7 +14,7 @@ public class Main {
 
         // vytvorenie sceny pre hru
         // pouzijeme implementaciu rozhrania `Scene` triedou `World`
-        Scene scene = new World("world");
+        Scene scene = new World("world", "maps/mission-impossible.tmx");
         // pridanie sceny do hry
         game.addScene(scene);
 
