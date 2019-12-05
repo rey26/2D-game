@@ -7,8 +7,10 @@ public class Shift<A extends Keeper> extends AbstractAction<A> {
     @Override
     public void execute(float deltaTime) {
         A keeper = getActor();
-        if(keeper == null)
+        if(keeper == null){
+            setDone(true);
             return;
+        }
 
         keeper.getBackpack().shift();
         setDone(true);

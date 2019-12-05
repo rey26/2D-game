@@ -12,8 +12,10 @@ public class Drop<A extends Keeper> extends AbstractAction<A> {
     @Override
     public void execute(float deltaTime) {
         A keeper = getActor();
-        if(keeper == null)
+        if(keeper == null){
+            setDone(true);
             return;
+        }
 
         Backpack backpack = keeper.getBackpack();
         if(backpack == null)

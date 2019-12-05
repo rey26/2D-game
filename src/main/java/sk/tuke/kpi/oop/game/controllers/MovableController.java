@@ -3,6 +3,8 @@ package sk.tuke.kpi.oop.game.controllers;
 import org.jetbrains.annotations.NotNull;
 import sk.tuke.kpi.gamelib.Input;
 import sk.tuke.kpi.gamelib.KeyboardListener;
+import sk.tuke.kpi.gamelib.Scene;
+import sk.tuke.kpi.gamelib.map.SceneMap;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Movable;
 import sk.tuke.kpi.oop.game.actions.Move;
@@ -24,6 +26,15 @@ public class MovableController implements KeyboardListener {
     }
 
     public void keyPressed(@NotNull Input.Key key) {
+        Scene scene = movable.getScene();
+        if(scene == null)
+            return;
+
+        SceneMap map = scene.getMap();
+//        TODO
+        if(map.intersectsWithWall(movable))
+            return;
+
         if(this.move != null)
             this.move.stop();
 

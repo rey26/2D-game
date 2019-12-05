@@ -55,6 +55,7 @@ public class Move <A extends Movable & Actor> implements Action<A> {
         this.duration -= deltaTime;
 
         this.isExecuted = true;
+        this.isDone = true;
 
         this.actor.setPosition(actor.getPosX() + (direction.getDx() * actor.getSpeed()), actor.getPosY() + (direction.getDy() * actor.getSpeed()));
         this.actor.getAnimation().setRotation(direction.getAngle());
