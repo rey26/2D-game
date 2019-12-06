@@ -39,4 +39,9 @@ public class Door extends AbstractActor implements Openable, Usable<Actor> {
     public boolean isOpen() {
         return isOpen;
     }
+
+    @Override
+    public Class<Actor> getUsingActorClass() {
+        return Actor.class;
+    }
 }

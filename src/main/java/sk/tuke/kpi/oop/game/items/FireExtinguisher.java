@@ -8,4 +8,9 @@ public class FireExtinguisher extends BreakableTool<Reactor> implements Collecti
         super(1);
         setAnimation(new Animation("sprites/extinguisher.png"));
     }
+
+    @Override
+    public Class<Reactor> getUsingActorClass() {
+        return Reactor.class;
+    }
 }

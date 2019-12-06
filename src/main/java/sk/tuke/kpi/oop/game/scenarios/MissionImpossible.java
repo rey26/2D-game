@@ -21,9 +21,11 @@ public class MissionImpossible implements SceneListener {
                return null;
            if(type.equals("ellen")) {
                 return new Ripley();
-            } else if (type.equals("energy")) {
+           } else if (type.equals("energy")) {
                 return new Energy();
-            }
+           } else if (type.equals("door")) {
+                return new Door();
+           }
             return null;
         }
     }

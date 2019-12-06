@@ -17,4 +17,8 @@ public class Hammer extends BreakableTool<Reactor> implements Collectible{
         setAnimation(this.normalAnimation);
     }
 
+    @Override
+    public Class<Reactor> getUsingActorClass() {
+        return Reactor.class;
+    }
 }

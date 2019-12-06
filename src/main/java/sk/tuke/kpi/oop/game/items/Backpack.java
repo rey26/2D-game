@@ -24,8 +24,9 @@ public class Backpack implements ActorContainer<Collectible> {
         return this.capacity;
     }
 
+    @NotNull
     public List<Collectible> getContent() {
-        return content;
+        return new ArrayList<>(content);
     }
 
     public int getSize() {
@@ -46,9 +47,10 @@ public class Backpack implements ActorContainer<Collectible> {
 
     @Override
     public void remove(@NotNull Collectible actor) {
-        this.content.remove(this.content.indexOf(actor));
+        this.content.remove(actor);
     }
 
+    @NotNull
     public Iterator<Collectible> iterator(){
         return this.content.iterator();
     }

@@ -2,7 +2,9 @@ package sk.tuke.kpi.oop.game.actions;
 
 import org.jetbrains.annotations.Nullable;
 import sk.tuke.kpi.gamelib.Actor;
+import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.actions.Action;
+import sk.tuke.kpi.gamelib.map.SceneMap;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Movable;
 
@@ -44,6 +46,18 @@ public class Move <A extends Movable & Actor> implements Action<A> {
     }
     @Override
     public void execute(float deltaTime) {
+        Scene scene = actor.getScene();
+        if(scene == null)
+            return;
+
+        SceneMap map = scene.getMap();
+//        TODO
+        if(map.intersectsWithWall(actor)) {
+            this.actor.stoppedMoving();
+            this.isDone = true;
+            this.isExecuted = true;
+            return;
+        }
         if(!this.isExecuted)
             this.actor.startedMoving(this.direction);
 
