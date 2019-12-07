@@ -14,6 +14,7 @@ public abstract class BreakableTool<A extends Actor> extends AbstractActor imple
     public void useWith(A a){
         this.remainingUses--;
         if(this.remainingUses == 0){
+
             Scene scene = getScene();
             if(scene == null)
                 return;

@@ -120,9 +120,9 @@ public class Reactor extends AbstractActor implements Switchable {
         updateAnimation();
     }
 
-    public void repairWith(Hammer hammer){
+    public boolean repair(Hammer hammer){
         if(hammer == null || this.damage == 0 || this.damage == 100)
-            return;
+            return false;
 
         this.damage -= 50;
         int helperDamage = this.damage;
@@ -138,6 +138,7 @@ public class Reactor extends AbstractActor implements Switchable {
         }
 
         handleDamage();
+        return true;
     }
 
     public void extinguishWith(FireExtinguisher fireExtinguisher){

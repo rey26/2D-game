@@ -9,8 +9,9 @@ import sk.tuke.kpi.gamelib.SceneListener;
 import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
+import sk.tuke.kpi.oop.game.items.AccessCard;
 import sk.tuke.kpi.oop.game.items.Energy;
-import sk.tuke.kpi.oop.game.openables.Door;
+import sk.tuke.kpi.oop.game.openables.LockedDoor;
 
 public class MissionImpossible implements SceneListener {
     private Ripley ripley;
@@ -24,9 +25,11 @@ public class MissionImpossible implements SceneListener {
            } else if (type.equals("energy")) {
                 return new Energy();
            } else if (type.equals("door")) {
-                return new Door();
+                return new LockedDoor();
+           } else if (type.equals("access card")) {
+               return new AccessCard();
            }
-            return null;
+           return null;
         }
     }
 
@@ -41,7 +44,7 @@ public class MissionImpossible implements SceneListener {
         scene.getInput().registerListener(keeperController);
         scene.follow(ripley);
 
-        scene.addActor(new Door(), 60, 50);
+        scene.addActor(new LockedDoor(), 60, 50);
     }
 
     @Override

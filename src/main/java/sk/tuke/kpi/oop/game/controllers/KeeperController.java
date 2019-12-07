@@ -7,6 +7,7 @@ import sk.tuke.kpi.oop.game.Keeper;
 import sk.tuke.kpi.oop.game.actions.Drop;
 import sk.tuke.kpi.oop.game.actions.Shift;
 import sk.tuke.kpi.oop.game.actions.Take;
+import sk.tuke.kpi.oop.game.items.Backpack;
 
 public class KeeperController implements KeyboardListener {
     private Keeper keeper;
@@ -25,6 +26,17 @@ public class KeeperController implements KeyboardListener {
                 break;
             case BACKSPACE:
                 new Drop<>().scheduleFor(this.keeper);
+                break;
+//            case U:
+//                new Use<>().scheduleForIntersectingWith((Usable<?>)this.keeper);
+//                break;
+            case B:
+                Backpack backpack = this.keeper.getBackpack();
+                if (backpack == null) return;
+                if (backpack.getSize() == 0) return;
+//                Collectible collectible = backpack.peek();
+//                if (collectible.getClass() != Usable<>) return;
+//                new Use<>(collectible).scheduleFor(this.keeper);
                 break;
             default:
                 break;
