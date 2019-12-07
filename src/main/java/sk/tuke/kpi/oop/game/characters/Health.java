@@ -1,14 +1,19 @@
 package sk.tuke.kpi.oop.game.characters;
 
 public class Health {
-    private int actual, initial, max;
+    private int actual, max;
     public Health(int initial, int max) {
-        this.initial = this.actual = initial;
+        this.actual = initial;
         this.max = max;
     }
 
     public Health(int health) {
-        this.actual = this.initial = this.max = health;
+        this.actual = this.max = health;
+    }
+
+    @FunctionalInterface
+    public interface ExhaustionEffect {
+        void apply();
     }
 
     public void refill(int amount) {
@@ -37,5 +42,9 @@ public class Health {
 
     public int getValue() {
         return this.actual;
+    }
+
+    public void onExhaustion(ExhaustionEffect effect) {
+
     }
 }

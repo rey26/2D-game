@@ -4,10 +4,10 @@ import org.jetbrains.annotations.NotNull;
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
+import sk.tuke.kpi.oop.game.characters.Alive;
 import sk.tuke.kpi.oop.game.characters.Health;
-import sk.tuke.kpi.oop.game.characters.Ripley;
 
-public class Energy extends AbstractActor implements Usable<Ripley> {
+public class Energy extends AbstractActor implements Usable<Alive> {
     public Energy(){
         Animation animation = new Animation(
             "sprites/energy.png");
@@ -15,8 +15,8 @@ public class Energy extends AbstractActor implements Usable<Ripley> {
         setAnimation(animation);
     }
     @Override
-    public void useWith(@NotNull Ripley ripley) {
-        Health health = ripley.getHealth();
+    public void useWith(@NotNull Alive alive) {
+        Health health = alive.getHealth();
         if(health == null) return;
         if(health.getValue() < 100) {
             Scene scene = getScene();
@@ -27,7 +27,7 @@ public class Energy extends AbstractActor implements Usable<Ripley> {
     }
 
     @Override
-    public Class<Ripley> getUsingActorClass() {
-        return Ripley.class;
+    public Class<Alive> getUsingActorClass() {
+        return Alive.class;
     }
 }
