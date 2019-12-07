@@ -6,6 +6,7 @@ import sk.tuke.kpi.gamelib.Actor;
 import sk.tuke.kpi.gamelib.ActorFactory;
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.SceneListener;
+import sk.tuke.kpi.oop.game.Locker;
 import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
@@ -28,6 +29,8 @@ public class MissionImpossible implements SceneListener {
                 return new LockedDoor();
            } else if (type.equals("access card")) {
                return new AccessCard();
+           } else if (type.equals("locker")) {
+               return new Locker();
            }
            return null;
         }
