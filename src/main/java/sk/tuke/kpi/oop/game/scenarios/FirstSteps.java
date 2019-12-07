@@ -2,7 +2,7 @@ package sk.tuke.kpi.oop.game.scenarios;
 
 import org.jetbrains.annotations.NotNull;
 import sk.tuke.kpi.gamelib.Actor;
-import sk.tuke.kpi.gamelib.GameApplication;
+//import sk.tuke.kpi.gamelib.GameApplication;
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.SceneListener;
 import sk.tuke.kpi.oop.game.actions.Use;
@@ -55,9 +55,9 @@ public class FirstSteps implements SceneListener {
                new Use<>((Ammo)actor).scheduleFor(ripley);
            }
        }
-        int windowHeight = scene.getGame().getWindowSetup().getHeight();
-        int yTextPos = ((windowHeight - 2 * GameApplication.STATUS_LINE_OFFSET) / 2 );
-        scene.getOverlay().drawText(" | Energy: " + this.ripley.getEnergy() + " | Ammo: " + this.ripley.getAmmo(), -300, yTextPos);
+//        int windowHeight = scene.getGame().getWindowSetup().getHeight();
+//        int yTextPos = ((windowHeight - 2 * GameApplication.STATUS_LINE_OFFSET) / 2 );
+//        scene.getOverlay().drawText(" | Energy: " + this.ripley.getEnergy() + " | Ammo: " + this.ripley.getAmmo(), -300, yTextPos);
 
     }
 }

@@ -39,7 +39,7 @@ public class Backpack implements ActorContainer<Collectible> {
     }
 
     public void add(@NotNull Collectible a){
-        if(this.content.size() > capacity) {
+        if(this.content.size() >= capacity) {
            throw new IllegalStateException( this.name + "is full");
         }
         this.content.add(a);

@@ -1,4 +1,5 @@
 package sk.tuke.kpi.oop.game.characters;
 
-public class Alive {
+public interface Alive {
+    Health getHealth();
 }
