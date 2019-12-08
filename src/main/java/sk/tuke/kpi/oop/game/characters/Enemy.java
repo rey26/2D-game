@@ -1,4 +1,4 @@
 package sk.tuke.kpi.oop.game.characters;
 
-public class Enemy {
+public interface Enemy {
 }

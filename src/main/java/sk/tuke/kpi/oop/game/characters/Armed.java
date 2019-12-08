@@ -1,4 +1,8 @@
 package sk.tuke.kpi.oop.game.characters;
 
-public class Armed {
+import sk.tuke.kpi.oop.game.weapons.Firearm;
+
+public interface Armed {
+    Firearm getFirearm();
+    void setFirearm(Firearm weapon);
 }

@@ -7,6 +7,7 @@ import sk.tuke.kpi.gamelib.ActorFactory;
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.SceneListener;
 import sk.tuke.kpi.oop.game.characters.Alien;
+import sk.tuke.kpi.oop.game.characters.AlienMother;
 import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
@@ -21,7 +22,7 @@ public class EscapeRoom implements SceneListener {
         public Actor create(@Nullable String type,@Nullable String name) {
            if(type == null)
                return null;
-           if(type.equals("ellen")) {
+           if(type.equals("ripley")) {
                 return new Ripley();
            } else if (type.equals("energy")) {
                 return new Energy();
@@ -29,15 +30,19 @@ public class EscapeRoom implements SceneListener {
                 return new Ammo();
            } else if (type.equals("alien")) {
                return new Alien();
-            }
+           } else if (type.equals("alien mother")) {
+               return new AlienMother();
+           }
            return null;
         }
     }
 
     @Override
     public void sceneInitialized(@NotNull Scene scene) {
-        ripley = new Ripley();
-        scene.addActor(ripley, 40, 30);
+//        ripley = new Ripley();
+//        scene.addActor(ripley, 40, 30);
+
+        ripley = scene.getFirstActorByType(Ripley.class);
 
         MovableController movableController = new MovableController(ripley);
         KeeperController keeperController = new KeeperController(ripley);

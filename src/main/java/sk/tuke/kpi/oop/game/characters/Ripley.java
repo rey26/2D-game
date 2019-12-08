@@ -10,13 +10,16 @@ import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Keeper;
 import sk.tuke.kpi.oop.game.Movable;
 import sk.tuke.kpi.oop.game.items.Backpack;
+import sk.tuke.kpi.oop.game.weapons.Firearm;
+import sk.tuke.kpi.oop.game.weapons.Gun;
 
-public class Ripley extends AbstractActor implements Movable, Keeper, Alive {
+public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Armed {
     private int speed;
     private int ammo;
     private Animation animation;
     private Backpack backpack;
     private Health health;
+    private Firearm gun;
 
     public Ripley(){
         super("Ellen");
@@ -31,6 +34,7 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive {
         setAnimation(animation);
         backpack = new Backpack("Ripley's backpack", 10);
         health = new Health(100);
+        this.setFirearm(new Gun(100, 1000));
     }
 
     public int getSpeed() {
@@ -47,6 +51,17 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive {
     public void setAmmo(int ammo) {
         this.ammo = ammo;
     }
+
+    @Override
+    public Firearm getFirearm() {
+        return gun;
+    }
+
+    @Override
+    public void setFirearm(Firearm weapon) {
+        gun = weapon;
+    }
+
     @Override
     public void startedMoving(Direction direction) {
         animation.play();

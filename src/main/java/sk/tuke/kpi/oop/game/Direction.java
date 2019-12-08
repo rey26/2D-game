@@ -21,6 +21,10 @@ public enum Direction {
         float angle =  (float) Math.toDegrees(Math.atan2(dx, dy));
         return (this == EAST || this == WEST) ? angle * (-1) : angle;
     }
+//
+//    public static Direction fromAngle(float angle) {
+//
+//    }
 
 }
 

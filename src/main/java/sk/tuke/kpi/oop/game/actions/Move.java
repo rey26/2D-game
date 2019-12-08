@@ -27,7 +27,7 @@ public class Move <A extends Movable & Actor> implements Action<A> {
     @Nullable
     @Override
     public A getActor() {
-        return this.actor;
+        return actor;
     }
 
     public void setActor(A actor) {
@@ -37,12 +37,12 @@ public class Move <A extends Movable & Actor> implements Action<A> {
     }
 
     public boolean isDone() {
-        return this.isDone;
+        return isDone;
     }
 
     public void reset() {
-        this.isDone = false;
-        this.isExecuted = false;
+        isDone = false;
+        isExecuted = false;
     }
     @Override
     public void execute(float deltaTime) {
@@ -51,32 +51,34 @@ public class Move <A extends Movable & Actor> implements Action<A> {
             return;
 
         SceneMap map = scene.getMap();
-//        TODO
+        int posX = actor.getPosX();
+        int posY = actor.getPosY();
+
+        actor.setPosition(posX + (direction.getDx() * actor.getSpeed()), posY + (direction.getDy() * actor.getSpeed()));
+
         if(map.intersectsWithWall(actor)) {
-            this.actor.stoppedMoving();
+            actor.stoppedMoving();
             this.isDone = true;
-            this.isExecuted = true;
+            actor.setPosition(posX, posY);
             return;
         }
-        if(!this.isExecuted)
-            this.actor.startedMoving(this.direction);
+        if(!isExecuted)
+            actor.startedMoving(direction);
 
-        if (this.duration == 0 || this.duration < -1) {
-            this.isDone = true;
-            this.actor.stoppedMoving();
+        if (duration == 0 || duration < -1) {
+            isDone = true;
+            actor.stoppedMoving();
             return;
         }
-        this.duration -= deltaTime;
+        duration -= deltaTime;
 
-        this.isExecuted = true;
-        this.isDone = true;
+        isExecuted = true;
 
-        this.actor.setPosition(actor.getPosX() + (direction.getDx() * actor.getSpeed()), actor.getPosY() + (direction.getDy() * actor.getSpeed()));
-        this.actor.getAnimation().setRotation(direction.getAngle());
+        actor.getAnimation().setRotation(direction.getAngle());
     }
 
     public void stop() {
-        this.isDone = true;
-        this.actor.stoppedMoving();
+        isDone = true;
+        actor.stoppedMoving();
     }
 }

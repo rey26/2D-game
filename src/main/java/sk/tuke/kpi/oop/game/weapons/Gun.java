@@ -1,4 +1,8 @@
 package sk.tuke.kpi.oop.game.weapons;
 
-public class Gun {
+public class Gun extends Firearm {
+
+    public Gun(int initial, int max) {
+        super(initial, max);
+    }
 }
