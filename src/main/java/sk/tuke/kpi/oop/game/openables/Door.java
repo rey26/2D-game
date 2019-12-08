@@ -12,14 +12,15 @@ public class Door extends AbstractActor implements Openable, Usable<Actor> {
     private Animation animation;
     private boolean isOpen;
     public Door(){
-        this.animation = new Animation(
+        animation = new Animation(
             "sprites/vdoor.png",
             16,
-            16,
+            32,
             0.1f,
             Animation.PlayMode.ONCE
         );
-        setAnimation(this.animation);
+        setAnimation(animation);
+        animation.stop();
     }
 
     @Override

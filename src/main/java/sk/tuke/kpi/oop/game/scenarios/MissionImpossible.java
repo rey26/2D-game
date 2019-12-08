@@ -7,6 +7,7 @@ import sk.tuke.kpi.gamelib.ActorFactory;
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.SceneListener;
 import sk.tuke.kpi.oop.game.Locker;
+import sk.tuke.kpi.oop.game.Ventilator;
 import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
@@ -19,18 +20,20 @@ public class MissionImpossible implements SceneListener {
     public static class Factory implements ActorFactory{
        @Nullable
         public Actor create(@Nullable String type,@Nullable String name) {
-           if(type == null)
+           if(name == null)
                return null;
-           if(type.equals("ellen")) {
+           if(name.equals("ellen")) {
                 return new Ripley();
-           } else if (type.equals("energy")) {
+           } else if (name.equals("energy")) {
                 return new Energy();
-           } else if (type.equals("door")) {
+           } else if (name.equals("door")) {
                 return new LockedDoor();
-           } else if (type.equals("access card")) {
+           } else if (name.equals("access card")) {
                return new AccessCard();
-           } else if (type.equals("locker")) {
+           } else if (name.equals("locker")) {
                return new Locker();
+           } else if (name.equals("ventilator")) {
+               return new Ventilator();
            }
            return null;
         }
@@ -38,8 +41,7 @@ public class MissionImpossible implements SceneListener {
 
     @Override
     public void sceneInitialized(@NotNull Scene scene) {
-        ripley = new Ripley();
-        scene.addActor(ripley, 50, 30);
+        ripley = scene.getFirstActorByType(Ripley.class);
 
         MovableController movableController = new MovableController(ripley);
         KeeperController keeperController = new KeeperController(ripley);
@@ -47,7 +49,6 @@ public class MissionImpossible implements SceneListener {
         scene.getInput().registerListener(keeperController);
         scene.follow(ripley);
 
-        scene.addActor(new LockedDoor(), 60, 50);
     }
 
     @Override

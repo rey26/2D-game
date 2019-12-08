@@ -15,7 +15,6 @@ import sk.tuke.kpi.oop.game.weapons.Gun;
 
 public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Armed {
     private int speed;
-    private int ammo;
     private Animation animation;
     private Backpack backpack;
     private Health health;
@@ -47,11 +46,6 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
 
     public Health getHealth() { return health; }
 
-    public int getAmmo() { return ammo;}
-    public void setAmmo(int ammo) {
-        this.ammo = ammo;
-    }
-
     @Override
     public Firearm getFirearm() {
         return gun;
@@ -73,22 +67,21 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
     }
 
     public void showRipleyState() {
-        Scene scene = getScene();
-        if (scene == null) return;
-        int windowHeight = scene.getGame().getWindowSetup().getHeight();
-        int yTextPos = ((windowHeight - 2 * GameApplication.STATUS_LINE_OFFSET) / 2 );
-        scene.getOverlay().drawText(" | Energy: " + this.getHealth().getValue() + " | Ammo: " + this.getAmmo(), -300, yTextPos);
+        int windowHeight = this.getScene().getGame().getWindowSetup().getHeight();
+        int yTextPos = windowHeight - GameApplication.STATUS_LINE_OFFSET;
+        this.getScene().getGame().getOverlay().drawText("| Health: " + this.health.getValue() + "| Ammo: " + this.getFirearm().getAmmo(), 100, yTextPos);
 
-        if (this.getHealth().getValue() == 0) {
-            MessageBus messageBus = scene.getMessageBus();
-            messageBus.publish(RIPLEY_DIED, this);
-            setAnimation(new Animation(
-                "sprites/player_die.png",
-                32,
-                32,
-                0.1f,
-                Animation.PlayMode.ONCE));
-        }
+
+//        if (this.getHealth().getValue() == 0) {
+//            MessageBus messageBus = scene.getMessageBus();
+//            messageBus.publish(RIPLEY_DIED, this);
+//            setAnimation(new Animation(
+//                "sprites/player_die.png",
+//                32,
+//                32,
+//                0.1f,
+//                Animation.PlayMode.ONCE));
+//        }
 
     }
 

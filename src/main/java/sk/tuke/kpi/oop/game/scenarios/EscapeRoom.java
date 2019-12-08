@@ -13,24 +13,28 @@ import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
 import sk.tuke.kpi.oop.game.items.Ammo;
 import sk.tuke.kpi.oop.game.items.Energy;
-import sk.tuke.kpi.oop.game.openables.LockedDoor;
+import sk.tuke.kpi.oop.game.openables.Door;
 
 public class EscapeRoom implements SceneListener {
     private Ripley ripley;
     public static class Factory implements ActorFactory{
        @Nullable
         public Actor create(@Nullable String type,@Nullable String name) {
-           if(type == null)
+           if(type == null || name == null)
                return null;
-           if(type.equals("ripley")) {
+           if(name.equals("ellen")) {
                 return new Ripley();
-           } else if (type.equals("energy")) {
+           } else if (name.equals("energy")) {
                 return new Energy();
-           } else if (type.equals("ammo")) {
+           } else if (name.equals("ammo")) {
                 return new Ammo();
-           } else if (type.equals("alien")) {
+           } else if (name.equals("alien")) {
                return new Alien();
-           } else if (type.equals("alien mother")) {
+           } else if (name.equals("alien mother")) {
+               return new AlienMother();
+           } else if (name.equals("front door")) {
+               return new Door();
+           } else if (name.equals("back door")) {
                return new AlienMother();
            }
            return null;
@@ -39,8 +43,7 @@ public class EscapeRoom implements SceneListener {
 
     @Override
     public void sceneInitialized(@NotNull Scene scene) {
-//        ripley = new Ripley();
-//        scene.addActor(ripley, 40, 30);
+
 
         ripley = scene.getFirstActorByType(Ripley.class);
 
@@ -50,7 +53,6 @@ public class EscapeRoom implements SceneListener {
         scene.getInput().registerListener(keeperController);
         scene.follow(ripley);
 
-        scene.addActor(new LockedDoor(), 60, 50);
     }
 
     @Override
