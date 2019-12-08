@@ -26,10 +26,14 @@ public enum Direction {
         int rand = (int)(Math.random() * 4);
         return Direction.values()[rand];
     }
-//
-//    public static Direction fromAngle(float angle) {
-//
-//    }
+
+    public static Direction fromAngle(float angle) {
+        for (Direction direction : Direction.values()) {
+            if(direction.getAngle() == angle)
+                return direction;
+        }
+        return Direction.NONE;
+    }
 
 }
 

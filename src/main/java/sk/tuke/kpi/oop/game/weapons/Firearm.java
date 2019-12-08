@@ -1,6 +1,6 @@
 package sk.tuke.kpi.oop.game.weapons;
 
-public abstract class Firearm implements Fireable{
+public abstract class Firearm {
     private int actual, max;
     public Firearm(int initial, int max) {
         actual = initial;
@@ -29,8 +29,6 @@ public abstract class Firearm implements Fireable{
         }
     }
 
-    protected Fireable createBullet() {
-        return new Bullet();
-    }
+    protected abstract Fireable createBullet();
 
 }

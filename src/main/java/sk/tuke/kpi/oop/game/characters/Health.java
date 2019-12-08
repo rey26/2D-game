@@ -15,6 +15,7 @@ public class Health {
 
     public Health(int health) {
         this.actual = this.max = health;
+        this.exhaustionEffects = new ArrayList<>();
     }
 
     @FunctionalInterface
@@ -57,6 +58,7 @@ public class Health {
     }
 
     public void onExhaustion(ExhaustionEffect effect) {
+        if(effect == null) return;
         this.exhaustionEffects.add(effect);
     }
 }

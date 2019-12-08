@@ -9,9 +9,7 @@ import sk.tuke.kpi.oop.game.characters.Health;
 
 public class Energy extends AbstractActor implements Usable<Alive> {
     public Energy(){
-        Animation animation = new Animation(
-            "sprites/energy.png");
-
+        Animation animation = new Animation("sprites/energy.png");
         setAnimation(animation);
     }
     @Override

@@ -1,27 +1,14 @@
 package sk.tuke.kpi.oop.game.actions;
 
-import org.jetbrains.annotations.Nullable;
 import sk.tuke.kpi.gamelib.Actor;
-import sk.tuke.kpi.gamelib.actions.Action;
+import sk.tuke.kpi.gamelib.framework.actions.AbstractAction;
+import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.characters.Armed;
 import sk.tuke.kpi.oop.game.weapons.Fireable;
 import sk.tuke.kpi.oop.game.weapons.Firearm;
 
-public class Fire<A extends Armed & Actor> implements Action<A> {
-    private A actor;
+public class Fire<A extends Armed & Actor> extends AbstractAction<A> {
     private boolean isDone;
-
-    @Override
-    public @Nullable A getActor() {
-        return actor;
-    }
-
-    @Override
-    public void setActor(@Nullable A actor) {
-        if(actor == null)
-            return;
-        this.actor = actor;
-    }
 
     @Override
     public boolean isDone() {
@@ -30,6 +17,7 @@ public class Fire<A extends Armed & Actor> implements Action<A> {
 
     @Override
     public void execute(float deltaTime) {
+        A actor = this.getActor();
         if(actor == null) return;
 
         Firearm firearm = actor.getFirearm();
@@ -37,7 +25,10 @@ public class Fire<A extends Armed & Actor> implements Action<A> {
 
         Fireable bullet = firearm.fire();
 
+        actor.getScene().addActor(bullet, actor.getPosX() + 8, actor.getPosY() + 26);
 
+        new Move<>(Direction.fromAngle(actor.getAnimation().getRotation()), 3).scheduleFor(bullet);
+        isDone = true;
     }
 
     @Override

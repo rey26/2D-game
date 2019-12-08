@@ -1,12 +1,19 @@
 package sk.tuke.kpi.oop.game.characters;
 
 import org.jetbrains.annotations.NotNull;
+import sk.tuke.kpi.gamelib.Actor;
 import sk.tuke.kpi.gamelib.Scene;
+import sk.tuke.kpi.gamelib.actions.ActionSequence;
+import sk.tuke.kpi.gamelib.actions.Invoke;
+import sk.tuke.kpi.gamelib.actions.Wait;
+import sk.tuke.kpi.gamelib.actions.While;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Movable;
 import sk.tuke.kpi.oop.game.actions.Move;
+
+import java.util.List;
 
 public class Alien extends AbstractActor implements Movable, Alive, Enemy {
     private int speed = 1;
@@ -31,6 +38,21 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
     @Override
     public void addedToScene(@NotNull Scene scene) {
         super.addedToScene(scene);
+        new While<Alien>(
+            () -> true,
+            new ActionSequence<>(
+                new Wait<>(1),
+                new Invoke<>(() -> {
+                List<Actor> actors = scene.getActors();
+                for (Actor actor : actors) {
+                    if (actor instanceof Alive && !(actor instanceof Enemy) && actor.intersects(this)) {
+                        ((Alive) actor).getHealth().drain(10);
+                    }
+                }
+            }))
+
+        ).scheduleFor(this);
+
     }
 
     @Override

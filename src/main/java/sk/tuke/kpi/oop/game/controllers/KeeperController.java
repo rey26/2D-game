@@ -35,27 +35,35 @@ public class KeeperController implements KeyboardListener {
                 new Drop<>().scheduleFor(this.keeper);
                 break;
             case U:
-                Scene scene = keeper.getScene();
-                if(scene == null) return;
-                List<Actor> actors = scene.getActors();
-                for(Actor actor : actors) {
-                    if(actor instanceof Usable && actor.intersects(keeper)) {
-                        new Use<>((Usable<?>)actor).scheduleForIntersectingWith(keeper);
-                    }
-                }
+                caseU();
                 break;
             case B:
-                Backpack backpack = this.keeper.getBackpack();
-                if (backpack == null) return;
-                if (backpack.getSize() == 0) return;
-                Collectible collectible = backpack.peek();
-                if (collectible instanceof Usable) {
-                    new Use<>((Usable<?>)collectible).scheduleForIntersectingWith(this.keeper);
-                }
+                this.caseB();
                 break;
             default:
                 break;
 
+        }
+    }
+
+    private void caseB() {
+
+        Backpack backpack = this.keeper.getBackpack();
+        if (backpack == null || backpack.getSize() == 0) return;
+        Collectible collectible = backpack.peek();
+        if (collectible instanceof Usable) {
+            new Use<>((Usable<?>)collectible).scheduleForIntersectingWith(this.keeper);
+        }
+    }
+
+    private void caseU() {
+        Scene scene = keeper.getScene();
+        if(scene == null) return;
+        List<Actor> actors = scene.getActors();
+        for(Actor actor : actors) {
+            if(actor instanceof Usable && actor.intersects(keeper)) {
+                new Use<>((Usable<?>)actor).scheduleForIntersectingWith(keeper);
+            }
         }
     }
 }
