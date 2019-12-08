@@ -21,6 +21,7 @@ public class Ammo extends AbstractActor implements Usable<Armed> {
         armed.getFirearm().reload(100);
     }
 
+
     @Override
     public Class<Armed> getUsingActorClass() {
         return Armed.class;
