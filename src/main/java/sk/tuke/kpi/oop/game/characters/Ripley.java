@@ -33,6 +33,19 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
         setAnimation(animation);
         backpack = new Backpack("Ripley's backpack", 10);
         health = new Health(100);
+        health.onExhaustion(()-> {
+            Scene scene = getScene();
+            if(scene == null) return;
+            MessageBus messageBus = scene.getMessageBus();
+            messageBus.publish(RIPLEY_DIED, this);
+            setAnimation(new Animation(
+                "sprites/player_die.png",
+                32,
+                32,
+                0.1f,
+                Animation.PlayMode.ONCE));
+            scene.cancelActions(this);
+        });
         this.setFirearm(new Gun(100, 1000));
     }
 
@@ -70,19 +83,6 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
         int windowHeight = this.getScene().getGame().getWindowSetup().getHeight();
         int yTextPos = windowHeight - GameApplication.STATUS_LINE_OFFSET;
         this.getScene().getGame().getOverlay().drawText("| Health: " + this.health.getValue() + "| Ammo: " + this.getFirearm().getAmmo(), 100, yTextPos);
-
-
-//        if (this.getHealth().getValue() == 0) {
-//            MessageBus messageBus = scene.getMessageBus();
-//            messageBus.publish(RIPLEY_DIED, this);
-//            setAnimation(new Animation(
-//                "sprites/player_die.png",
-//                32,
-//                32,
-//                0.1f,
-//                Animation.PlayMode.ONCE));
-//        }
-
     }
 
 

@@ -18,8 +18,13 @@ public enum Direction {
      }
 
     public float getAngle(){
-        float angle =  (float) Math.toDegrees(Math.atan2(dx, dy));
+        float angle = (float) Math.toDegrees(Math.atan2(dx, dy));
         return (this == EAST || this == WEST) ? angle * (-1) : angle;
+    }
+
+    public static Direction getRandomDirection() {
+        int rand = (int)(Math.random() * 4);
+        return Direction.values()[rand];
     }
 //
 //    public static Direction fromAngle(float angle) {

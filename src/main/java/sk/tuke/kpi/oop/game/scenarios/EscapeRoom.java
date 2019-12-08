@@ -2,10 +2,10 @@ package sk.tuke.kpi.oop.game.scenarios;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import sk.tuke.kpi.gamelib.Actor;
-import sk.tuke.kpi.gamelib.ActorFactory;
-import sk.tuke.kpi.gamelib.Scene;
-import sk.tuke.kpi.gamelib.SceneListener;
+import sk.tuke.kpi.gamelib.*;
+import sk.tuke.kpi.gamelib.messages.MessageBus;
+import sk.tuke.kpi.oop.game.Direction;
+import sk.tuke.kpi.oop.game.actions.Move;
 import sk.tuke.kpi.oop.game.characters.Alien;
 import sk.tuke.kpi.oop.game.characters.AlienMother;
 import sk.tuke.kpi.oop.game.characters.Ripley;
@@ -35,15 +35,24 @@ public class EscapeRoom implements SceneListener {
            } else if (name.equals("front door")) {
                return new Door();
            } else if (name.equals("back door")) {
-               return new AlienMother();
+               return new Door();
            }
            return null;
         }
     }
 
     @Override
-    public void sceneInitialized(@NotNull Scene scene) {
+    public void sceneCreated(@NotNull Scene scene) {
+        MessageBus messageBus = scene.getMessageBus();
+        messageBus.subscribe(World.ACTOR_ADDED_TOPIC, (actor) -> {
+            if(actor instanceof Alien) {
+                new Move<>(Direction.getRandomDirection(), Float.MAX_VALUE).scheduleFor((Alien)actor);
+            }
+        });
+    }
 
+    @Override
+    public void sceneInitialized(@NotNull Scene scene) {
 
         ripley = scene.getFirstActorByType(Ripley.class);
 

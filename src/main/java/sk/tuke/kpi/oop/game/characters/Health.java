@@ -1,10 +1,16 @@
 package sk.tuke.kpi.oop.game.characters;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Health {
     private int actual, max;
+    private List<ExhaustionEffect> exhaustionEffects;
+
     public Health(int initial, int max) {
         this.actual = initial;
         this.max = max;
+        this.exhaustionEffects = new ArrayList<>();
     }
 
     public Health(int health) {
@@ -20,7 +26,7 @@ public class Health {
         if(amount < 1) return;
         actual += amount;
         if(actual > max) {
-            actual = max;
+            this.restore();
         }
     }
 
@@ -32,12 +38,18 @@ public class Health {
         if(amount < 1) return;
         actual -= amount;
         if(actual < 0) {
-            actual = 0;
+            this.exhaust();
         }
     }
 
     public void exhaust() {
+        if(actual == 0)
+            return;
         actual = 0;
+
+        for (ExhaustionEffect exhaustionEffect : exhaustionEffects) {
+            exhaustionEffect.apply();
+        }
     }
 
     public int getValue() {
@@ -45,6 +57,6 @@ public class Health {
     }
 
     public void onExhaustion(ExhaustionEffect effect) {
-
+        this.exhaustionEffects.add(effect);
     }
 }
