@@ -33,9 +33,27 @@ public class Fire<A extends Armed & Actor> extends AbstractAction<A> {
         Fireable bullet = firearm.fire();
         Scene scene = actor.getScene();
         if(scene == null) return;
-        scene.addActor(bullet, actor.getPosX() + 8, actor.getPosY() + 26);
+        Direction direction = Direction.fromAngle(actor.getAnimation().getRotation());
+        int x = 8, y = 26;
+        switch (direction) {
+            case EAST:
+                x = 26;
+                y = 8;
+                break;
+            case SOUTH:
+                x = 8;
+                y = 0;
+                break;
+            case WEST:
+                x = 0;
+                y = 8;
+                break;
+            default:
+                break;
+        }
+        scene.addActor(bullet, actor.getPosX() + x, actor.getPosY() + y);
 
-        new Move<>(Direction.fromAngle(actor.getAnimation().getRotation()), 3).scheduleFor(bullet);
+        new Move<>(direction, 3).scheduleFor(bullet);
         isDone = true;
     }
 
