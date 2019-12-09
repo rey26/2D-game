@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Health {
     private int actual, max;
+    private boolean isExhausted = false;
     private List<ExhaustionEffect> exhaustionEffects;
 
     public Health(int initial, int max) {
@@ -38,19 +39,20 @@ public class Health {
     public void drain(int amount) {
         if(amount < 1) return;
         actual -= amount;
-        if(actual < 0) {
+        if(actual < 1) {
             this.exhaust();
         }
     }
 
     public void exhaust() {
-        if(actual == 0)
+        if(isExhausted)
             return;
         actual = 0;
 
         for (ExhaustionEffect exhaustionEffect : exhaustionEffects) {
             exhaustionEffect.apply();
         }
+        isExhausted = true;
     }
 
     public int getValue() {

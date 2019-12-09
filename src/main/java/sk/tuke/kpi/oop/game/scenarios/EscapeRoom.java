@@ -3,9 +3,7 @@ package sk.tuke.kpi.oop.game.scenarios;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sk.tuke.kpi.gamelib.*;
-import sk.tuke.kpi.gamelib.messages.MessageBus;
-import sk.tuke.kpi.oop.game.Direction;
-import sk.tuke.kpi.oop.game.actions.Move;
+import sk.tuke.kpi.oop.game.behaviours.RandomlyMoving;
 import sk.tuke.kpi.oop.game.characters.Alien;
 import sk.tuke.kpi.oop.game.characters.AlienMother;
 import sk.tuke.kpi.oop.game.characters.Ripley;
@@ -15,6 +13,7 @@ import sk.tuke.kpi.oop.game.controllers.ShooterController;
 import sk.tuke.kpi.oop.game.items.Ammo;
 import sk.tuke.kpi.oop.game.items.Energy;
 import sk.tuke.kpi.oop.game.openables.Door;
+
 
 public class EscapeRoom implements SceneListener {
     private Ripley ripley;
@@ -30,13 +29,17 @@ public class EscapeRoom implements SceneListener {
            } else if (name.equals("ammo")) {
                 return new Ammo();
            } else if (name.equals("alien")) {
-               return new Alien();
+               if(type.equals("running"))
+                   return new Alien(new RandomlyMoving());
+               return new Alien(null);
            } else if (name.equals("alien mother")) {
-               return new AlienMother();
+               if(type.equals("running"))
+                   return new AlienMother(new RandomlyMoving());
+               return new AlienMother(null);
            } else if (name.equals("front door")) {
-               return new Door();
+               return new Door(name, Door.Orientation.VERTICAL);
            } else if (name.equals("back door")) {
-               return new Door();
+               return new Door(name, Door.Orientation.HORIZONTAL);
            }
            return null;
         }
@@ -44,12 +47,12 @@ public class EscapeRoom implements SceneListener {
 
     @Override
     public void sceneCreated(@NotNull Scene scene) {
-        MessageBus messageBus = scene.getMessageBus();
-        messageBus.subscribe(World.ACTOR_ADDED_TOPIC, (actor) -> {
-            if(actor instanceof Alien) {
-                new Move<>(Direction.getRandomDirection(), Float.MAX_VALUE).scheduleFor((Alien)actor);
-            }
-        });
+//        MessageBus messageBus = scene.getMessageBus();
+//        messageBus.subscribe(World.ACTOR_ADDED_TOPIC, (actor) -> {
+//            if(actor instanceof Alien) {
+//                new Move<>(Direction.getRandomDirection(), Float.MAX_VALUE).scheduleFor((Alien)actor);
+//            }
+//        });
     }
 
     @Override

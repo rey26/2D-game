@@ -13,6 +13,7 @@ import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
 import sk.tuke.kpi.oop.game.items.AccessCard;
 import sk.tuke.kpi.oop.game.items.Energy;
+import sk.tuke.kpi.oop.game.openables.Door;
 import sk.tuke.kpi.oop.game.openables.LockedDoor;
 
 public class MissionImpossible implements SceneListener {
@@ -27,7 +28,7 @@ public class MissionImpossible implements SceneListener {
            } else if (name.equals("energy")) {
                 return new Energy();
            } else if (name.equals("door")) {
-                return new LockedDoor();
+                return new LockedDoor(name, Door.Orientation.VERTICAL);
            } else if (name.equals("access card")) {
                return new AccessCard();
            } else if (name.equals("locker")) {
