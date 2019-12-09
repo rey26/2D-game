@@ -48,12 +48,12 @@ public class Bullet extends AbstractActor implements Fireable{
         new While<Bullet>(
             () -> true,
             new ActionSequence<>(
-                new Wait<>(1),
                 new Invoke<>(() -> {
                     List<Actor> actors = scene.getActors();
                     for (Actor actor : actors) {
                         if (actor instanceof Alive && actor instanceof Enemy && actor.intersects(this)) {
                             ((Alive) actor).getHealth().drain(10);
+                            scene.removeActor(this);
                         }
                     }
                 }))

@@ -18,12 +18,17 @@ import java.util.List;
 
 public class Alien extends AbstractActor implements Movable, Alive, Enemy {
     private Health health;
-    public Behaviour<? super Alien> behaviour;
+    private Scene scene;
+    private Behaviour<? super Alien> behaviour;
 
     public Alien(Behaviour<? super Alien> behaviour) {
         this.behaviour = behaviour;
         this.setHealth(100);
         setAnimation(new Animation("sprites/alien.png", 32, 32, 0.1f));
+        health.onExhaustion(() -> {
+            scene.removeActor(this);
+            scene.cancelActions(this);
+        });
     }
 
     public void setHealth(int value) {
@@ -39,7 +44,10 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
 
     @Override
     public void addedToScene(@NotNull Scene scene) {
-        behaviour.setUp(this);
+        if(behaviour != null) {
+            behaviour.setUp(this);
+        }
+
         super.addedToScene(scene);
         new While<Alien>(
             () -> true,

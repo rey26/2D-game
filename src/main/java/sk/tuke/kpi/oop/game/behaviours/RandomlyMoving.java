@@ -10,9 +10,10 @@ public class RandomlyMoving<A extends Movable> implements Behaviour<A> {
 
     }
     public void execute(float deltaTime) {
-        while (deltaTime > 0){
+        float delta = deltaTime;
+        while (delta > 0){
             new Move<>(Direction.getRandomDirection(), Float.MAX_VALUE).scheduleFor(actor);
-            deltaTime--;
+            delta--;
         }
     }
 
