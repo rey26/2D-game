@@ -65,7 +65,7 @@ public class Move <A extends Movable & Actor> implements Action<A> {
         if(!isExecuted)
             actor.startedMoving(direction);
 
-        if (duration == 0 || duration < -1) {
+        if (duration < 1) {
             isDone = true;
             actor.stoppedMoving();
             return;
