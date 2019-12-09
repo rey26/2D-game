@@ -14,14 +14,14 @@ public class ShooterController implements KeyboardListener {
     }
 
     @Override
-    public void keyPressed(Input.@NotNull Key key) {
+    public void keyPressed(@NotNull Input.Key key) {
         if(key == Input.Key.SPACE) {
             new Fire<>().scheduleFor(armed);
         }
     }
 
     @Override
-    public void keyReleased(Input.@NotNull Key key) {
+    public void keyReleased(@NotNull Input.Key key) {
 
     }
 }
