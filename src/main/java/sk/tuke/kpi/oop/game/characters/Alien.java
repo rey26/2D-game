@@ -26,7 +26,7 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
         this.setHealth(100);
         setAnimation(new Animation("sprites/alien.png", 32, 32, 0.1f));
         health.onExhaustion(() -> {
-            scene.removeActor(this);
+            this.scene.removeActor(this);
             scene.cancelActions(this);
         });
     }
@@ -35,7 +35,7 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
         health = new Health(value);
     }
 
-    public Health getHealth() {return health; }
+    public Health getHealth() { return health; }
 
     @Override
     public int getSpeed() {
@@ -47,6 +47,8 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
         if(behaviour != null) {
             behaviour.setUp(this);
         }
+
+        this.scene = scene;
 
         super.addedToScene(scene);
         new While<Alien>(

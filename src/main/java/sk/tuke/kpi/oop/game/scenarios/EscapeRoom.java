@@ -31,7 +31,7 @@ public class EscapeRoom implements SceneListener {
            } else if (name.equals("alien")) {
 //               if(type.equals("running"))
 //                   return new Alien(new RandomlyMoving());
-               return new Alien(null);
+//               return new Alien(null);
            } else if (name.equals("alien mother")) {
 //               if(type.equals("running"))
 //                   return new AlienMother(new RandomlyMoving());

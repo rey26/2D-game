@@ -45,10 +45,10 @@ public class Health {
     }
 
     public void exhaust() {
+
+        actual = 0;
         if(isExhausted)
             return;
-        actual = 0;
-
         for (ExhaustionEffect exhaustionEffect : exhaustionEffects) {
             exhaustionEffect.apply();
         }

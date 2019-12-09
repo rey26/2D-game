@@ -67,7 +67,7 @@ public class Door extends AbstractActor implements Openable, Usable<Actor> {
         SceneMap map = scene.getMap();
         map.getTile(this.getPosX()/16, this.getPosY()/16).setType(MapTile.Type.CLEAR);
         int v = 1, h = 0;
-        if(this.orientation == Orientation.HORIZONTAL) {
+        if(this.orientation == Orientation.VERTICAL) {
             h = 1;
             v = 0;
         }
@@ -87,7 +87,7 @@ public class Door extends AbstractActor implements Openable, Usable<Actor> {
         SceneMap map = scene.getMap();
         map.getTile(this.getPosX()/16, this.getPosY()/16).setType(MapTile.Type.WALL);
         int v = 1, h = 0;
-        if(this.orientation == Orientation.HORIZONTAL) {
+        if(this.orientation == Orientation.VERTICAL) {
             h = 1;
             v = 0;
         }
