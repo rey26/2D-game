@@ -23,6 +23,7 @@ public abstract class Firearm {
 
     public Fireable fire() {
         if (this.getAmmo() > 0) {
+            actual--;
             return this.createBullet();
         } else {
             return null;

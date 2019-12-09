@@ -14,6 +14,7 @@ public class Energy extends AbstractActor implements Usable<Alive> {
     }
     @Override
     public void useWith(@NotNull Alive alive) {
+        if (alive == null) return;
         Health health = alive.getHealth();
         if(health == null) return;
         if(health.getValue() < 100) {

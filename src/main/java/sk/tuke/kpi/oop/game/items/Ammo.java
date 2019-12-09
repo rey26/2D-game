@@ -17,6 +17,7 @@ public class Ammo extends AbstractActor implements Usable<Armed> {
     public void useWith(@NotNull Armed armed) {
         Scene scene = getScene();
         if (scene == null) return;
+        if (armed == null) return;
         scene.removeActor(this);
         armed.getFirearm().reload(100);
     }

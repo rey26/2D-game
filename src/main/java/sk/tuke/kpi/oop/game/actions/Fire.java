@@ -1,6 +1,7 @@
 package sk.tuke.kpi.oop.game.actions;
 
 import sk.tuke.kpi.gamelib.Actor;
+import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.framework.actions.AbstractAction;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.characters.Armed;
@@ -18,14 +19,21 @@ public class Fire<A extends Armed & Actor> extends AbstractAction<A> {
     @Override
     public void execute(float deltaTime) {
         A actor = this.getActor();
-        if(actor == null) return;
+        if(actor == null) {
+            isDone = true;
+            return;
+        }
 
         Firearm firearm = actor.getFirearm();
-        if(firearm == null) return;
+        if(firearm == null){
+            isDone = true;
+            return;
+        }
 
         Fireable bullet = firearm.fire();
-
-        actor.getScene().addActor(bullet, actor.getPosX() + 8, actor.getPosY() + 26);
+        Scene scene = actor.getScene();
+        if(scene == null) return;
+        scene.addActor(bullet, actor.getPosX() + 8, actor.getPosY() + 26);
 
         new Move<>(Direction.fromAngle(actor.getAnimation().getRotation()), 3).scheduleFor(bullet);
         isDone = true;

@@ -58,7 +58,7 @@ public class Move <A extends Movable & Actor> implements Action<A> {
 
         if(map.intersectsWithWall(actor)) {
             actor.stoppedMoving();
-            this.isDone = true;
+            isDone = true;
             actor.setPosition(posX, posY);
             return;
         }
@@ -71,6 +71,8 @@ public class Move <A extends Movable & Actor> implements Action<A> {
             return;
         }
         duration -= deltaTime;
+        if(duration == 0)
+            isDone = true;
 
         isExecuted = true;
 
