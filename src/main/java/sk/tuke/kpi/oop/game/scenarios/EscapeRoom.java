@@ -28,14 +28,14 @@ public class EscapeRoom implements SceneListener {
                 return new Energy();
            } else if (name.equals("ammo")) {
                 return new Ammo();
-           } else if (name.equals("alien")) {
-               if(type.equals("running"))
-                   return new Alien(new RandomlyMoving());
-               return new Alien(null);
-           } else if (name.equals("alien mother")) {
-               if(type.equals("running"))
-                   return new AlienMother(new RandomlyMoving());
-               return new AlienMother(null);
+//           } else if (name.equals("alien")) {
+//               if(type.equals("running"))
+//                   return new Alien(new RandomlyMoving());
+//               return new Alien(null);
+//           } else if (name.equals("alien mother")) {
+//               if(type.equals("running"))
+//                   return new AlienMother(new RandomlyMoving());
+//               return new AlienMother(null);
            } else if (name.equals("front door")) {
                return new Door(name, Door.Orientation.VERTICAL);
            } else if (name.equals("back door")) {
