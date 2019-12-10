@@ -25,9 +25,34 @@ public enum Direction {
     public Direction combine(Direction other) {
         if ((other == NORTH && this == EAST) || (other == EAST && this == NORTH))
             return Direction.NORTHEAST;
-        else if (other == NORTH && this == WEST )
+        else if ((other == NORTH && this == WEST) || (other == WEST && this == NORTH))
             return Direction.NORTHWEST;
+        else if ((other == SOUTH && this == EAST) || (other == EAST && this == SOUTH))
+            return Direction.SOUTHEAST;
+        else if ((other == SOUTH && this == WEST) || (other == WEST && this == SOUTH))
+            return Direction.SOUTHWEST;
+        else if ((other == SOUTHWEST && this == NORTH) || (other == NORTH && this == SOUTHWEST))
+            return Direction.WEST;
+        else if ((other == SOUTHEAST && this == NORTH) || (other == NORTH && this == SOUTHEAST))
+            return Direction.EAST;
+        else if ((other == NORTHEAST && this == SOUTH) || (other == SOUTH && this == NORTHEAST))
+            return Direction.EAST;
+        else if ((other == NORTHWEST && this == SOUTH) || (other == SOUTH && this == NORTHWEST))
+            return Direction.WEST;
+        else if ((other == NORTHWEST && this == EAST) || (other == EAST && this == NORTHWEST))
+            return Direction.NORTH;
+        else if ((other == SOUTHWEST && this == EAST) || (other == EAST && this == SOUTHWEST))
+            return Direction.SOUTH;
+        else if ((other == SOUTHEAST && this == WEST) || (other == WEST && this == SOUTHEAST))
+            return Direction.SOUTH;
+        else if ((other == NORTHEAST && this == WEST) || (other == WEST && this == NORTHEAST))
+            return Direction.NORTH;
         return Direction.NONE;
+//        int newX = this.dx + other.dx,
+//            newY = this.dy + other.dy;
+//        if (newX > 1 || newX < -1 || newY > 1 || newY < -1)
+//            return Direction.NONE;
+//        return Direction.(newX, newY);
     }
 
     public static Direction getRandomDirection() {
@@ -36,7 +61,6 @@ public enum Direction {
     }
 
     public static Direction fromAngle(float angle) {
-//        angle = 270;
         float ang = angle;
         if (ang > 180)
             ang -= 360;
@@ -44,7 +68,6 @@ public enum Direction {
             if(direction.getAngle() == ang){
                 return direction;
             }
-
         }
         return Direction.NONE;
     }
