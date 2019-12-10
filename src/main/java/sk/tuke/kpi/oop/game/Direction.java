@@ -23,6 +23,8 @@ public enum Direction {
     }
 
     public Direction combine(Direction other) {
+        if ((other.NORTH == Direction.NORTH) && (this.EAST == Direction.EAST))
+            return Direction.NORTHEAST;
         return Direction.NONE;
     }
 
@@ -32,8 +34,12 @@ public enum Direction {
     }
 
     public static Direction fromAngle(float angle) {
+//        angle = 270;
+        float ang = angle;
+        if (ang > 180)
+            ang -= 360;
         for (Direction direction : Direction.values()) {
-            if(direction.getAngle() == angle){
+            if(direction.getAngle() == ang){
 
                 return direction;
             }

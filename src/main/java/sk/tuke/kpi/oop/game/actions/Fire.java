@@ -33,6 +33,7 @@ public class Fire<A extends Armed & Actor> extends AbstractAction<A> {
         Fireable bullet = firearm.fire();
         Scene scene = actor.getScene();
         if(scene == null) return;
+//        float rotation = actor.getAnimation().getRotation();
         Direction direction = Direction.fromAngle(actor.getAnimation().getRotation());
         int x = 8, y = 26;
         switch (direction) {

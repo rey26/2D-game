@@ -19,5 +19,7 @@ public class RandomlyMoving<A extends Movable> implements Behaviour<A> {
 
     public void setUp(A actor) {
         this.actor = actor;
+
+        new Move<>(Direction.getRandomDirection(), Float.MAX_VALUE).scheduleFor(actor);
     }
 }
