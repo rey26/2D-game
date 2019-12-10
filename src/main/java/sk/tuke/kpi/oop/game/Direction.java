@@ -33,8 +33,11 @@ public enum Direction {
 
     public static Direction fromAngle(float angle) {
         for (Direction direction : Direction.values()) {
-            if(direction.getAngle() == angle)
+            if(direction.getAngle() == angle){
+
                 return direction;
+            }
+
         }
         return Direction.NONE;
     }
