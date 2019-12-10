@@ -19,12 +19,14 @@ public enum Direction {
 
     public float getAngle(){
         float angle = (float) Math.toDegrees(Math.atan2(dx, dy));
-        return (this == EAST || this == WEST) ? angle * (-1) : angle;
+        return (this == EAST || this == WEST || this == NORTHEAST || this == NORTHWEST || this == SOUTHEAST || this == SOUTHWEST) ? angle * (-1) : angle;
     }
 
     public Direction combine(Direction other) {
-        if ((other.NORTH == Direction.NORTH) && (this.EAST == Direction.EAST))
+        if ((other == NORTH && this == EAST) || (other == EAST && this == NORTH))
             return Direction.NORTHEAST;
+        else if (other == NORTH && this == WEST )
+            return Direction.NORTHWEST;
         return Direction.NONE;
     }
 
