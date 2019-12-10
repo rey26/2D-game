@@ -25,7 +25,7 @@ public class MovableController implements KeyboardListener {
 
     public void keyPressed(@NotNull Input.Key key) {
 
-        if(this.move != null)
+        if(this.move != null )
             this.move.stop();
 
         if (keyDirectionMap.containsKey(key)) {

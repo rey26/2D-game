@@ -64,15 +64,14 @@ public class Move <A extends Movable & Actor> implements Action<A> {
         }
         if(!isExecuted)
             actor.startedMoving(direction);
+        duration -= deltaTime;
 
-        if (duration < 1) {
+
+        if (duration < 1e-5) {
             isDone = true;
             actor.stoppedMoving();
             return;
         }
-        duration -= deltaTime;
-        if(duration == 0)
-            isDone = true;
 
         isExecuted = true;
 
