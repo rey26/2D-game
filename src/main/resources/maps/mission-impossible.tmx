@@ -15,6 +15,7 @@
  </layer>
  <objectgroup id="3" name="actors">
   <object id="1" name="access card" x="224" y="96" width="16" height="16"/>
+  <object id="1" name="ammo" x="244" y="96" width="16" height="16"/>
   <object id="2" name="energy" x="128" y="16" width="16" height="16"/>
   <object id="3" name="door" x="96" y="64" width="16" height="32"/>
   <object id="4" name="ellen" type="ripley" x="256" y="112" width="32" height="32"/>

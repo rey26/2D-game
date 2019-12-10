@@ -12,6 +12,7 @@ import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
 import sk.tuke.kpi.oop.game.items.AccessCard;
+import sk.tuke.kpi.oop.game.items.Ammo;
 import sk.tuke.kpi.oop.game.items.Energy;
 import sk.tuke.kpi.oop.game.openables.Door;
 import sk.tuke.kpi.oop.game.openables.LockedDoor;
@@ -27,6 +28,8 @@ public class MissionImpossible implements SceneListener {
                 return new Ripley();
            } else if (name.equals("energy")) {
                 return new Energy();
+           } else if (name.equals("ammo")) {
+               return new Ammo();
            } else if (name.equals("door")) {
                 return new LockedDoor(name, Door.Orientation.VERTICAL);
            } else if (name.equals("access card")) {

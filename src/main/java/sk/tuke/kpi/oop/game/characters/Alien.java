@@ -12,17 +12,14 @@ import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Movable;
 import sk.tuke.kpi.oop.game.actions.Move;
-import sk.tuke.kpi.oop.game.behaviours.Behaviour;
 
 import java.util.List;
 
 public class Alien extends AbstractActor implements Movable, Alive, Enemy {
-    private Health health;
-    private Scene scene;
-    private Behaviour<? super Alien> behaviour;
+    protected Health health;
+    protected Scene scene;
 
-    public Alien(Behaviour<? super Alien> behaviour) {
-        this.behaviour = behaviour;
+    public Alien() {
         this.setHealth(100);
         setAnimation(new Animation("sprites/alien.png", 32, 32, 0.1f));
         health.onExhaustion(() -> {
@@ -44,9 +41,6 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
 
     @Override
     public void addedToScene(@NotNull Scene scene) {
-        if(behaviour != null) {
-            behaviour.setUp(this);
-        }
 
         this.scene = scene;
 

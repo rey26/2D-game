@@ -40,7 +40,6 @@ public enum Direction {
             ang -= 360;
         for (Direction direction : Direction.values()) {
             if(direction.getAngle() == ang){
-
                 return direction;
             }
 

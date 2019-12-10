@@ -8,9 +8,7 @@ import sk.tuke.kpi.oop.game.characters.Armed;
 
 public class Ammo extends AbstractActor implements Usable<Armed> {
     public Ammo(){
-        Animation animation = new Animation(
-            "sprites/ammo.png");
-
+        Animation animation = new Animation("sprites/ammo.png");
         setAnimation(animation);
     }
     @Override

@@ -8,6 +8,7 @@ import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.actions.Move;
 import sk.tuke.kpi.oop.game.characters.Alien;
 import sk.tuke.kpi.oop.game.characters.AlienMother;
+import sk.tuke.kpi.oop.game.characters.Cables;
 import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
@@ -17,7 +18,7 @@ import sk.tuke.kpi.oop.game.items.Energy;
 import sk.tuke.kpi.oop.game.openables.Door;
 
 
-public class EscapeRoom implements SceneListener {
+public class Junkyard implements SceneListener {
     private Ripley ripley;
     public static class Factory implements ActorFactory{
        @Nullable
@@ -29,11 +30,13 @@ public class EscapeRoom implements SceneListener {
                     return new Energy();
                 } else if (name.equals("ammo")) {
                     return new Ammo();
+                }  else if (name.equals("cables")) {
+                    return new Cables();
                 } else if (name.equals("alien")) {
                     return new Alien();
                 } else if (name.equals("alien mother")) {
                     return new AlienMother();
-                } else if (name.equals("front door")) {
+                } else if (name.equals("front door") || name.equals("exit door")) {
                     return new Door(name, Door.Orientation.VERTICAL);
                 } else if (name.equals("back door")) {
                     return new Door(name, Door.Orientation.HORIZONTAL);

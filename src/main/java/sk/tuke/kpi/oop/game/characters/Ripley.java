@@ -32,7 +32,7 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
         speed = 2;
         setAnimation(animation);
         backpack = new Backpack("Ripley's backpack", 10);
-        health = new Health(100);
+        health = new Health(100, 300);
         health.onExhaustion(()-> {
             Scene scene = getScene();
             if(scene == null) return;
