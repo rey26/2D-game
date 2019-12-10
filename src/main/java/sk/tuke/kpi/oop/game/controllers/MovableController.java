@@ -18,6 +18,7 @@ public class MovableController implements KeyboardListener {
         Map.entry(Input.Key.DOWN, Direction.SOUTH),
         Map.entry(Input.Key.LEFT, Direction.WEST)
     );
+//    private Direction direction[] =
 
     public MovableController(Movable movable) {
         this.movable = movable;

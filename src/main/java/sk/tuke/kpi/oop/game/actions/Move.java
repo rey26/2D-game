@@ -70,7 +70,8 @@ public class Move <A extends Movable & Actor> implements Action<A> {
 
         if (duration < 1e-5) {
             isDone = true;
-            actor.stoppedMoving();
+            if (!isExecuted)
+                actor.stoppedMoving();
             return;
         }
 

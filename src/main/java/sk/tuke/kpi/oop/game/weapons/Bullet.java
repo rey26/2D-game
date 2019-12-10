@@ -10,6 +10,7 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.characters.Alive;
+import sk.tuke.kpi.oop.game.characters.Ripley;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class Bullet extends AbstractActor implements Fireable{
                 new Invoke<>(() -> {
                     List<Actor> actors = scene.getActors();
                     for (Actor actor : actors) {
-                        if (actor instanceof Alive && actor.intersects(this)) {
+                        if (actor instanceof Alive && actor.intersects(this) && !(actor instanceof Ripley) ){
                             ((Alive) actor).getHealth().drain(10);
                             scene.removeActor(this);
                         }
