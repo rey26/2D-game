@@ -60,6 +60,7 @@ public class Move <A extends Movable & Actor> implements Action<A> {
             actor.stoppedMoving();
             isDone = true;
             actor.setPosition(posX, posY);
+            actor.collidedWithWall();
             return;
         }
         if(!isExecuted)
