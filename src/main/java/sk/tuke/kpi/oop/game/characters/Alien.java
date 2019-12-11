@@ -16,8 +16,8 @@ import sk.tuke.kpi.oop.game.actions.Move;
 import java.util.List;
 
 public class Alien extends AbstractActor implements Movable, Alive, Enemy {
-    protected Health health;
-    protected Scene scene;
+    private Health health;
+    private Scene scene;
 
     public Alien() {
         this.setHealth(100);

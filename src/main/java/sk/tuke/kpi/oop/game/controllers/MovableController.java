@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MovableController implements KeyboardListener {
+    private boolean keyPressed = false;
     private Movable movable;
     private Move<Movable> move;
     private Map<Input.Key, Direction> keyDirectionMap = Map.ofEntries(
@@ -28,20 +29,30 @@ public class MovableController implements KeyboardListener {
 
     public void keyPressed(@NotNull Input.Key key) {
 
-        if(this.move != null )
-            this.move.stop();
-
         if (keyDirectionMap.containsKey(key)) {
-            directions.add(keyDirectionMap.get(key));
+            if(!keyPressed)
+                directions.clear();
 
-           this.move = new Move<>(keyDirectionMap.get(key), Float.MAX_VALUE);
-           move.scheduleFor(movable);
+            if(this.move != null)
+                this.move.stop();
+
+            keyPressed = true;
+
+            directions.add(keyDirectionMap.get(key));
+            Direction dir = keyDirectionMap.get(key);
+            for (Direction direction : directions) {
+                dir = dir.combine(direction);
+            }
+            this.move = new Move<>(dir, Float.MAX_VALUE);
+            move.scheduleFor(movable);
+//            directions.clear();
         }
     }
 
     public void keyReleased(@NotNull Input.Key key) {
         if (keyDirectionMap.containsKey(key) && this.move != null) {
             this.move.stop();
+            keyPressed = false;
         }
     }
 
