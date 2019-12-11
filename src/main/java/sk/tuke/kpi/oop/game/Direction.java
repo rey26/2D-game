@@ -23,35 +23,21 @@ public enum Direction {
     }
 
     public Direction combine(Direction other) {
-//        if ((other == NORTH && this == EAST) || (other == EAST && this == NORTH))
-//            return Direction.NORTHEAST;
-//        else if ((other == NORTH && this == WEST) || (other == WEST && this == NORTH))
-//            return Direction.NORTHWEST;
-//        else if ((other == SOUTH && this == EAST) || (other == EAST && this == SOUTH))
-//            return Direction.SOUTHEAST;
-//        else if ((other == SOUTH && this == WEST) || (other == WEST && this == SOUTH))
-//            return Direction.SOUTHWEST;
-//        else if ((other == SOUTHWEST && this == NORTH) || (other == NORTH && this == SOUTHWEST) || (other == NORTHWEST && this == SOUTH) || (other == SOUTH && this == NORTHWEST))
-//            return Direction.WEST;
-//        else if ((other == SOUTHEAST && this == NORTH) || (other == NORTH && this == SOUTHEAST) || (other == NORTHEAST && this == SOUTH) || (other == SOUTH && this == NORTHEAST))
-//            return Direction.EAST;
-//        else if ((other == NORTHWEST && this == EAST) || (other == EAST && this == NORTHWEST) || (other == NORTHEAST && this == WEST) || (other == WEST && this == NORTHEAST))
-//            return Direction.NORTH;
-//        else if ((other == SOUTHWEST && this == EAST) || (other == EAST && this == SOUTHWEST) || (other == SOUTHEAST && this == WEST) || (other == WEST && this == SOUTHEAST))
-//            return Direction.SOUTH;
-//
-//        return Direction.NONE;
         if (other.getDx() == this.getDx() && other.getDy() == this.getDy())
             return  this;
         int newX = this.dx + other.dx,
             newY = this.dy + other.dy;
-        if (newX > 1 || newX < -1 || newY > 1 || newY < -1)
-            return Direction.NONE;
-        for (Direction direction : Direction.values()) {
-            if(direction.getDx() == newX && direction.getDy() == newY)
-                return direction;
+        if (check(newX, newY)) {
+            for (Direction direction : Direction.values()) {
+                if (direction.getDx() == newX && direction.getDy() == newY)
+                    return direction;
+            }
         }
         return Direction.NONE;
+    }
+
+    private boolean check(int newX, int newY) {
+        return (newX < 2 && newX > -2 && newY < 2 && newY > -2);
     }
 
     public static Direction getRandomDirection() {

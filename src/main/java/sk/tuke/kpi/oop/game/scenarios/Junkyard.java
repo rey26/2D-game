@@ -33,7 +33,7 @@ public class Junkyard implements SceneListener {
                 }  else if (name.equals("cables")) {
                     return new Cables();
                 } else if (name.equals("alien")) {
-                    return new Alien();
+//                    return new Alien();
                 } else if (name.equals("alien mother")) {
                     return new AlienMother();
                 } else if (name.equals("front door") || name.equals("exit door")) {
