@@ -6,10 +6,7 @@ import sk.tuke.kpi.gamelib.*;
 import sk.tuke.kpi.gamelib.messages.MessageBus;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.actions.Move;
-import sk.tuke.kpi.oop.game.characters.Alien;
-import sk.tuke.kpi.oop.game.characters.AlienMother;
-import sk.tuke.kpi.oop.game.characters.Cables;
-import sk.tuke.kpi.oop.game.characters.Ripley;
+import sk.tuke.kpi.oop.game.characters.*;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
 import sk.tuke.kpi.oop.game.controllers.ShooterController;
@@ -31,7 +28,7 @@ public class Junkyard implements SceneListener {
                 } else if (name.equals("ammo")) {
                     return new Ammo();
                 }  else if (name.equals("cables")) {
-                    return new Cables();
+                    return new Cables(2);
                 } else if (name.equals("alien")) {
 //                    return new Alien();
                 } else if (name.equals("alien mother")) {
@@ -40,6 +37,10 @@ public class Junkyard implements SceneListener {
                     return new Door(name, Door.Orientation.VERTICAL);
                 } else if (name.equals("back door")) {
                     return new Door(name, Door.Orientation.HORIZONTAL);
+                } else if (name.equals("extra life")) {
+                    return new ExtraLife();
+                } else if (name.equals("electricity")) {
+                    return new Electricity();
                 }
 
             }

@@ -13,36 +13,32 @@ import sk.tuke.kpi.oop.game.Movable;
 
 import java.util.List;
 
-public class Cables extends AbstractActor implements MoveSlower {
-    private int slowingRate = 2;
-    public Cables(int slowingRate) {
-        if(slowingRate > 1)
-            this.slowingRate = slowingRate;
-        setAnimation(new Animation("sprites/cables.png"));
+public class ExtraLife extends AbstractActor implements Actor {
+    public ExtraLife() {
+        setAnimation(new Animation("sprites/life.png"));
     }
 
-    @Override
-    public int getSlowingRate() {
-        return slowingRate;
+    public int getSpeedIncrement() {
+        return 2;
     }
 
     @Override
     public void addedToScene(@NotNull Scene scene) {
         super.addedToScene(scene);
-        new While<Cables>(
+        new While<ExtraLife>(
             () -> true,
             new Invoke<>(() -> {
                 List<Actor> actors = scene.getActors();
                 for (Actor actor : actors) {
                     if (actor instanceof Movable && !(actor instanceof Enemy) && actor.intersects(this) && !((Movable) actor).isSpeedModified()) {
                        int speed = ((Movable) actor).getSpeed();
-                        ((Movable) actor).setSpeed( speed/getSlowingRate());
+                        ((Movable) actor).setSpeed( speed*getSpeedIncrement());
                         ((Movable) actor).toggleSpeedModified();
-                        new ActionSequence<>(new Wait<>(1),
+                        new ActionSequence<>(
+                            new Wait<>(5),
                             new Invoke<>(() -> {
                                 ((Movable) actor).setSpeed(speed);
                                 ((Movable) actor).toggleSpeedModified();
-
                             })
                         ).scheduleFor(this);
                     }

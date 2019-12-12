@@ -5,10 +5,10 @@ import sk.tuke.kpi.gamelib.Actor;
 public interface Movable extends Actor {
 
     int getSpeed();
-    boolean isSlowed = false;
+    boolean isSpeedModified = false;
     default void setSpeed(int speed) {}
-    default boolean isSlowed() { return isSlowed;}
-    default void toggleSlowed() {}
+    default boolean isSpeedModified() { return isSpeedModified;}
+    default void toggleSpeedModified() {}
     default void startedMoving(Direction direction) {}
     default void stoppedMoving() {}
     default void collidedWithWall() {}

@@ -2,7 +2,6 @@ package sk.tuke.kpi.oop.game.characters;
 
 import sk.tuke.kpi.gamelib.GameApplication;
 import sk.tuke.kpi.gamelib.Scene;
-import sk.tuke.kpi.gamelib.actions.Wait;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.gamelib.messages.MessageBus;
@@ -15,7 +14,7 @@ import sk.tuke.kpi.oop.game.weapons.Firearm;
 import sk.tuke.kpi.oop.game.weapons.Gun;
 
 public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Armed {
-    private boolean isSlowed = false;
+    private boolean isSpeedModified = false;
     private int speed;
     private Animation animation;
     private Backpack backpack;
@@ -59,12 +58,12 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
         this.speed = speed;
     }
 
-    public boolean isSlowed() {
-        return isSlowed;
+    public boolean isSpeedModified() {
+        return isSpeedModified;
     }
 
-    public void toggleSlowed() {
-        this.isSlowed = !this.isSlowed;
+    public void toggleSpeedModified() {
+        this.isSpeedModified = !this.isSpeedModified;
     }
 
     public Backpack getBackpack() {

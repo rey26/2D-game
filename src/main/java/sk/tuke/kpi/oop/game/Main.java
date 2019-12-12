@@ -16,7 +16,7 @@ public class Main {
         // pouzijeme implementaciu rozhrania `Scene` triedou `World`
 //        Scene scene = new World("mission-impossible", "maps/mission-impossible.tmx", new MissionImpossible.Factory());
 //        Scene scene = new World("escape-room", "maps/escape-room.tmx", new EscapeRoom.Factory());
-        Scene scene = new World("junkyard", "maps/test.tmx", new Junkyard.Factory());
+        Scene scene = new World("junkyard", "maps/junkyard.tmx", new Junkyard.Factory());
         // pridanie sceny do hry
         game.addScene(scene);
 
