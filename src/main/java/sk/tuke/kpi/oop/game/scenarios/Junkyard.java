@@ -21,13 +21,13 @@ public class Junkyard implements SceneListener {
        @Nullable
         public Actor create(@Nullable String type,@Nullable String name) {
             if(name != null){
-                if(name.equals("ellen")) {
+                if (name.equals("ellen")) {
                     return new Ripley();
                 } else if (name.equals("energy")) {
                     return new Energy();
                 } else if (name.equals("ammo")) {
                     return new Ammo();
-                }  else if (name.equals("cables")) {
+                } else if (name.equals("cables")) {
                     return new Cables(2);
                 } else if (name.equals("alien")) {
 //                    return new Alien();
@@ -41,7 +41,7 @@ public class Junkyard implements SceneListener {
                     return new ExtraLife();
                 } else if (name.equals("electricity")) {
                     return new Electricity();
-                }else if (name.equals("trap")) {
+                } else if (name.equals("trap")) {
                     return new Trap(3);
                 }
 

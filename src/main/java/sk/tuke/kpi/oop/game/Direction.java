@@ -5,6 +5,8 @@ public enum Direction {
 
     private final int dx;
     private final int dy;
+    private int newX;
+    private int newY;
     Direction(int dx, int dy){
         this.dx = dx;
         this.dy = dy;
@@ -25,9 +27,11 @@ public enum Direction {
     public Direction combine(Direction other) {
         if (other.getDx() == this.getDx() && other.getDy() == this.getDy())
             return  this;
-        int newX = this.dx + other.dx,
-            newY = this.dy + other.dy;
-        if (check(newX, newY)) {
+
+        newX = this.dx + other.dx;
+        newY = this.dy + other.dy;
+        reassign();
+        if (check()) {
             for (Direction direction : Direction.values()) {
                 if (direction.getDx() == newX && direction.getDy() == newY)
                     return direction;
@@ -36,8 +40,17 @@ public enum Direction {
         return Direction.NONE;
     }
 
-    private boolean check(int newX, int newY) {
+    private boolean check() {
         return (newX < 2 && newX > -2 && newY < 2 && newY > -2);
+    }
+
+    private void reassign() {
+        if(newX == 0 && newY == 2) {
+            newY = 1;
+        }
+        if(newX == 2 && newY == 0) {
+            newX = 1;
+        }
     }
 
     public static Direction getRandomDirection() {

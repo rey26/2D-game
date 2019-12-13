@@ -51,6 +51,13 @@ public class MovableController implements KeyboardListener {
     public void keyReleased(@NotNull Input.Key key) {
         if (keyDirectionMap.containsKey(key) && this.move != null) {
             this.move.stop();
+
+//            Input key1 = movable.getScene().getInput();
+//
+//            if(directions.size() > 2) {
+//                this.move = new Move<>(directions.get(directions.size() - 2), Float.MAX_VALUE);
+//                move.scheduleFor(movable);
+//            }
             directions.clear();
         }
     }

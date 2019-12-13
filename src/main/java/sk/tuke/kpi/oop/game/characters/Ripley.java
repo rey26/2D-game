@@ -16,6 +16,7 @@ import sk.tuke.kpi.oop.game.weapons.Gun;
 public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Armed {
     private boolean isSpeedModified = false;
     private int speed;
+    private int ammoType;
     private Animation animation;
     private Backpack backpack;
     private Health health;
@@ -60,6 +61,16 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
 
     public boolean isSpeedModified() {
         return isSpeedModified;
+    }
+
+    @Override
+    public int getAmmoType() {
+        return ammoType;
+    }
+
+    @Override
+    public void setAmmoType(int type) {
+        this.ammoType = type;
     }
 
     public void toggleSpeedModified() {
