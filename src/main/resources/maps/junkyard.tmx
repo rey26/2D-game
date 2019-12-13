@@ -37,7 +37,8 @@
   <object id="18" name="alien" type="waiting2" x="304" y="416" width="32" height="32"/>
   <object id="19" name="energy" x="416" y="432" width="16" height="16"/>
   <object id="22" name="cables" x="400" y="164" width="32" height="16"/>
-  <object id="23" name="extra life" x="388" y="32" width="16" height="16"/>
+  <object id="23" name="extra life" x="404" y="16" width="16" height="16"/>
   <object id="24" name="electricity" x="224" y="48" width="16" height="48"/>
+  <object id="25" name="trap" x="176" y="64" width="16" height="16"/>
  </objectgroup>
 </map>
