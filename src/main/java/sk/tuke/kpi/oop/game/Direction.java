@@ -47,10 +47,14 @@ public enum Direction {
     private void reassign() {
         if(newX == 0 && newY == 2) {
             newY = 1;
-        }
-        if(newX == 2 && newY == 0) {
+        } else if(newX == 2 && newY == 0) {
             newX = 1;
+        } else if(newX == -2 && newY == 0) {
+            newX = -1;
+        } else if(newX == 0 && newY == -2) {
+            newY = -1;
         }
+
     }
 
     public static Direction getRandomDirection() {

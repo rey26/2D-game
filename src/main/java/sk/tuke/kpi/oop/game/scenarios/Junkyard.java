@@ -43,6 +43,8 @@ public class Junkyard implements SceneListener {
                     return new Electricity();
                 } else if (name.equals("trap")) {
                     return new Trap(3);
+                } else if (name.equals("special ammo")) {
+                    return new SpecialAmmo();
                 }
 
             }
