@@ -10,8 +10,7 @@ import sk.tuke.kpi.oop.game.characters.*;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
 import sk.tuke.kpi.oop.game.controllers.ShooterController;
-import sk.tuke.kpi.oop.game.items.Ammo;
-import sk.tuke.kpi.oop.game.items.Energy;
+import sk.tuke.kpi.oop.game.items.*;
 import sk.tuke.kpi.oop.game.openables.Door;
 
 
@@ -30,7 +29,7 @@ public class Junkyard implements SceneListener {
                 } else if (name.equals("cables")) {
                     return new Cables(2);
                 } else if (name.equals("alien")) {
-//                    return new Alien();
+                    return new Alien();
                 } else if (name.equals("alien mother")) {
                     return new AlienMother();
                 } else if (name.equals("front door") || name.equals("exit door")) {
@@ -45,6 +44,10 @@ public class Junkyard implements SceneListener {
                     return new Trap(3);
                 } else if (name.equals("special ammo")) {
                     return new SpecialAmmo();
+                } else if (name.equals("hole")) {
+                    return new Hole();
+                } else if (name.equals("button green")) {
+                    return new ButtonGreen();
                 }
 
             }
@@ -56,9 +59,24 @@ public class Junkyard implements SceneListener {
     public void sceneCreated(@NotNull Scene scene) {
         MessageBus messageBus = scene.getMessageBus();
         messageBus.subscribe(World.ACTOR_ADDED_TOPIC, (actor) -> {
-            if(actor instanceof Alien) {
-                new Move<>(Direction.getRandomDirection(), Float.MAX_VALUE).scheduleFor((Alien)actor);
+            if (actor instanceof Alien) {
+                new Move<>(Direction.getRandomDirection(), Float.MAX_VALUE).scheduleFor((Alien) actor);
             }
+        });
+
+        messageBus.subscribe(Ripley.RIPLEY_DIED, ripley1 -> {
+            scene.addActor(new LevelFailed(), 96, 128);
+            new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        scene.getGame().stop();
+                    }
+                },
+                5000
+            );
+
+
         });
     }
 
