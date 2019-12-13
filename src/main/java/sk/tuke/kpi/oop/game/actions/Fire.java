@@ -7,6 +7,7 @@ import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.characters.Armed;
 import sk.tuke.kpi.oop.game.weapons.Fireable;
 import sk.tuke.kpi.oop.game.weapons.Firearm;
+import sk.tuke.kpi.oop.game.weapons.Gun;
 
 public class Fire<A extends Armed & Actor> extends AbstractAction<A> {
     private boolean isDone;
@@ -52,6 +53,16 @@ public class Fire<A extends Armed & Actor> extends AbstractAction<A> {
             default:
                 break;
         }
+        if(bullet == null){
+            if(actor.getFirearm() instanceof Gun){
+                isDone = true;
+                return;
+            }
+            actor.setFirearm(new Gun(100, 100));
+            bullet = actor.getFirearm().fire();
+        }
+
+
         scene.addActor(bullet, actor.getPosX() + x, actor.getPosY() + y);
 
         new Move<>(direction, 3).scheduleFor(bullet);
